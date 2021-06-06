@@ -1,0 +1,11 @@
+{{#if shipping_messages}}
+  {{#each shipping_messages}}
+    {{> core/alerts/alert-info message=message dismissable=true}}
+  {{/each}}
+{{/if}}
+
+{{#if product.shipping_messages}}
+  {{#each product.shipping_messages}}
+    {{> core/alerts/alert-info message=message dismissable=true}}
+  {{/each}}
+{{/if}}

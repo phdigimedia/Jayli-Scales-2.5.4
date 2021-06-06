@@ -1,0 +1,16 @@
+.page-header {
+  width: 100%;
+  padding: $gutter-double 0;
+  text-align: center;
+
+  @include breakpoint(m-down) { padding: ($gutter + $gutter-third) 0; }
+
+  .page-header-title {
+    margin: 0;
+    transition: font-size 0.3s $ease-out-quad;
+
+    @include breakpoint(m-down) { font-size: $h2-size; }
+    @include breakpoint(ms-down) { font-size: $h3-size; }
+    @include breakpoint(s-down) { font-size: $h4-size; }
+  }
+}

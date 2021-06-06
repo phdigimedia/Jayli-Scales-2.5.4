@@ -1,0 +1,62 @@
+.giftcard-nav {
+  padding: 0;
+  margin-bottom: $gutter-double;
+  text-align: left;
+  border-bottom: 1px solid $border-color;
+
+  @include breakpoint(m-down) {
+    padding-bottom: $gutter-half;
+    margin-bottom: $gutter;
+  }
+}
+
+.giftcard-nav-item {
+  display: inline-block;
+  padding-bottom: $gutter;
+  margin: 0 $gutter -1px 0;
+  line-height: 1;
+  color: $heading-color;
+  border-bottom: 1px solid transparent;
+
+  @include breakpoint(m-down) {
+    width: 100%;
+    padding-bottom: $gutter-third;
+    border-bottom: 0;
+  }
+
+  &.is-active {
+    color: $accent-color;
+    border-bottom-color: $accent-color;
+  }
+}
+
+.giftcard-heading {
+  margin-bottom: $gutter-third;
+
+  + p {
+    padding-bottom: $gutter-half;
+    margin-top: 0;
+  }
+}
+
+.form-giftcard-balance {
+  .form-actions {
+    margin: 0;
+
+    .button {
+      width: 100%;
+      height: $input-height;
+      padding: 0;
+    }
+  }
+}
+
+.giftcard-form-preview {
+  iframe {
+    @include align(middle);
+    padding: $gutter-third;
+    background-color: $body-background;
+    border: 1px solid $input-border;
+    box-shadow: inset 0 0 0 10px lighten($input-border, 12%), inset 0 0 0 11px $input-border;
+  }
+}

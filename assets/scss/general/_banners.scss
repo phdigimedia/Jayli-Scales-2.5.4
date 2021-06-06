@@ -1,0 +1,32 @@
+// Banners
+.page-banner-container {
+  @extend %smallcaps;
+  display: block;
+  width: 100%;
+  padding: $gutter-half 0;
+  font-family: $banner-font-family;
+  font-size: $banner-font-size;
+  font-weight: $banner-font-weight;
+  color: $banner-color;
+  text-align: center;
+  background-color: $banner-background;
+
+  a {
+    color: $banner-color;
+    text-decoration: underline;
+  }
+
+  * { font-family: inherit; }
+}
+
+.page-banner {
+  @extend %container-padding;
+  @include container();
+
+  > *:first-child { margin-top: 0; }
+  > *:last-child { margin-bottom: 0; }
+
+  img {
+    width: auto;
+  }
+}

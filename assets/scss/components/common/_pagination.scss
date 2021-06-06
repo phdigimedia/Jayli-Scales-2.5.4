@@ -1,0 +1,38 @@
+.pagination-container {
+  $pagination-size: 40px;
+  @extend %h6;
+  margin: $gutter 0;
+  text-align: center;
+
+  .pagination-number,
+  .pagination-next,
+  .pagination-previous {
+    @include align(middle);
+    display: inline-block;
+    margin: 0 $gutter-third;
+    line-height: $pagination-size - 3;
+    transition: all 0.3s $ease-out-quad;
+  }
+
+  .pagination-number {
+    position: relative;
+    display: inline-block;
+    width: $pagination-size;
+    height: $pagination-size;
+    margin: 0 ($gutter-third / 2);
+    text-align: center;
+    border: 1px solid $border-color;
+
+    @include breakpoint(ms-down) { display: none; }
+
+    a {
+      @include coverer();
+      display: block;
+    }
+
+    &.single { padding: $gutter-third; }
+
+    &:hover,
+    &.current { background-color: darken($body-background, 5%); }
+  }
+}

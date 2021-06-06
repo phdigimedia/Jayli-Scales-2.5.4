@@ -1,0 +1,101 @@
+// Container
+.product-collection-filter-sort {
+  @include container();
+  @include row();
+  display: block;
+  padding: $gutter 0;
+
+  .collection-full-width & {
+    max-width: 100%;
+    margin: 0 ($gutter - $gutter-third);
+
+    @include breakpoint(l-down) { margin: 0; }
+  }
+}
+
+// Facet Toggle
+.product-collection-filtering {
+  //scss-lint:disable NestingDepth
+  @include align(middle);
+  width: 50%;
+  padding: $gutter-third 0;
+
+  .filter-toggle-wrapper,
+  .filter-clear-all {
+    @extend %button-reset;
+    @extend %paragraph;
+    @include align(middle);
+    position: relative;
+
+    &:hover { cursor: pointer; }
+
+    svg {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 17px;
+      height: 13px;
+      margin-right: $gutter-third;
+    }
+  }
+
+  .filter-toggle-wrapper { padding-left: 27px; }
+
+  .filter-clear-all {
+    padding-left: $gutter-third;
+    margin-left: $gutter-third;
+    color: $accent-color;
+    border-left: 1px solid $border-color;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s linear;
+
+    &.visible {
+      .show-sidebar & {
+        display: inline-block;
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+// Sorting
+.product-collection-sorting {
+  @extend %paragraph;
+  @include align(middle);
+  width: 100%;
+  padding: $gutter-third 0;
+  text-align: right;
+
+  .filters-enabled & { width: 50%; }
+
+  .form-field-title,
+  .form-field-control {
+    @include align(middle);
+    margin: 0;
+  }
+
+  .form-field-title {
+    @extend %primary-font;
+    font-weight: normal;
+    color: $body-color;
+    text-transform: none;
+  }
+
+  .form-select-wrapper {
+    @extend %paragraph;
+    display: flex;
+    height: auto;
+    padding: 0 $gutter-half 1px 5px;
+    color: $header-color;
+    background-color: transparent;
+    border: 0;
+
+    &::after {
+      right: 0;
+      width: 5px;
+      height: 5px;
+    }
+  }
+}

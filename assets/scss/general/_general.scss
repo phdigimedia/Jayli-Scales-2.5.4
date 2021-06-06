@@ -1,0 +1,71 @@
+// General
+html { background-color: $footer-background; }
+
+body {
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: 1.5;
+  background-color: $body-background;
+
+  &.scroll-locked,
+  &.product-overlay-open { overflow: hidden; }
+
+  &.cart-preview-open {
+    position: fixed;
+    overflow: hidden;
+    width: 100vw;
+  }
+
+  &.mobile-nav-open {
+    position: fixed;
+    overflow: hidden;
+
+    @include breakpoint(l) {
+      position: static;
+      overflow: visible;
+    }
+  }
+
+  &.quick-shop-open,
+  &.search-form-visible {
+    overflow: hidden;
+
+    @include breakpoint(m-down) { overflow: visible; }
+  }
+}
+
+// Main Content
+.main-content {
+  position: relative;
+  transition: padding 0.3s $ease-out-quad;
+
+  .mobile-nav-open & {
+    overflow: hidden;
+
+    @include breakpoint(l) { overflow: visible; }
+  }
+}
+
+// Links
+a {
+  color: $heading-color;
+  transition: color 0.2s $ease-out-quad;
+}
+
+// Icons
+.icon-sprite { display: none; }
+
+//Geotrust seals
+table.geotrust-ssl-seal-table {
+  position: relative;
+  left: 50%;
+  margin-top: 0;
+  margin-bottom: 40px;
+  border: 0;
+  transform: translateX(-50%);
+
+  td {
+    padding: 0;
+    border: 0;
+  }
+}

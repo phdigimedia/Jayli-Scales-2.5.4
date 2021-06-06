@@ -1,0 +1,24 @@
+.page-content-wrapper {
+  @extend %container-padding;
+  @include container();
+  display: block;
+  width: 100%;
+}
+
+.page-content {
+  display: block;
+  width: 100%;
+  max-width: $medium;
+  margin-right: auto;
+  margin-bottom: $gutter-double;
+  margin-left: auto;
+
+  ol { margin-left: $gutter-third; }
+
+  ul {
+    margin-left: $gutter-half + ($gutter-third / 2);
+    list-style: disc;
+  }
+
+  li { @extend %paragraph; }
+}

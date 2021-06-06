@@ -1,0 +1,38 @@
+.footer-main {
+  padding: $gutter-double 0;
+  font-family: $footer-font-family;
+  font-size: $footer-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: $footer-font-weight;
+  color: $footer-color;
+  text-align: center;
+  background-color: $footer-background;
+
+  @include breakpoint(m-down) { padding: $gutter; }
+}
+
+.footer-navigation,
+.footer-social,
+.footer-newsletter {
+  @include align(middle);
+  margin: 0 ($gutter-half + $gutter-third);
+
+  @include breakpoint(m-down) {
+    display: block;
+    margin: $gutter 0;
+  }
+}
+
+.footer-navigation,
+.footer-newsletter {
+  @include breakpoint(l) { min-width: 250px; }
+}
+
+.footer-branding {
+  width: $branding-size;
+  margin: ($gutter + $gutter-third) auto;
+}
+
+.footer-payment-icons {
+  margin-top: $gutter + $gutter-third;
+}

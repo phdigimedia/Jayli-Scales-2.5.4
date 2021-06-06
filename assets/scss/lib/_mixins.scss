@@ -1,0 +1,221 @@
+// Grid
+@mixin container() {
+  max-width: $max-width;
+  margin: 0 auto;
+}
+
+@mixin row() {
+  font-size: 0;
+}
+
+// @include col(1, 3)
+// @include col(1, 2, $gap: 2em)
+// @include col(1, 3, $first: true)
+// @include col(1, 3, $last: true)
+@mixin col($col, $sum, $gap: $gutter-half, $align: top, $first: false, $last: false) {
+  width: percentage($col / $sum);
+  font-size: $body-font-size;
+  display: inline-block;
+  vertical-align: $align;
+  box-sizing: border-box;
+  padding-left: if($first, 0, $gap);
+  padding-right: if($last, 0, $gap);
+}
+
+// Alignment
+@mixin align($value) {
+  display: inline-block;
+
+  @if $value == top {
+    vertical-align: top;
+  }
+  @if $value == middle {
+    vertical-align: middle;
+  }
+  @if $value == bottom {
+    vertical-align: bottom;
+  }
+}
+
+// Opacity Settings (Theme Editor)
+@mixin opacity-background($color, $property: false) {
+  @for $i from 1 through 10 {
+    .#{$property}-opacity-#{$i} & { background-color: rgba($color, ($i * 0.1));  }
+  }
+}
+
+@mixin opacity-header-border($color, $property: false) {
+  @for $i from 1 through 10 {
+    .header-borders.#{$property}-opacity-#{$i} & { border-color: rgba($color, ($i * 0.1));  }
+  }
+}
+
+// Centering
+@mixin center-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin center-vertical {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin center-both {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Coverer
+@mixin coverer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Maintain Aspect Ratio
+@mixin maintain-ratio($ratio: 1 1) {
+  @if length($ratio) < 2 or length($ratio) > 2 {
+    @warn "$ratio must be a list with two values.";
+  }
+
+  $width: 100%;
+  $height: percentage(nth($ratio, 2) / nth($ratio, 1));
+
+  width: $width;
+  height: 0;
+  padding-bottom: $height;
+}
+
+// SVG Shapes
+@mixin arrow-left($fill-color) {
+  background: {
+    image: svg-url("<svg fill='#{$fill-color}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 107 32'><path d='M26.667 10.667h80v10.667h-80v10.667l-26.667-16 26.667-16z'></path></svg>");
+    position: 50% 50%;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+@mixin arrow-right($fill-color) {
+  background: {
+    image: svg-url("<svg fill='#{$fill-color}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 107 32'><path d='M80 10.667h-80v10.667h80v10.667l26.667-16c0.211 0.448-26.667-16-26.667-16v10.667z'></path></svg>");
+    position: 50% 50%;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+@mixin chevron-left($fill-color) {
+  background: {
+    image: svg-url("<svg fill='#{$fill-color}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 32'><path d='M1.506 16.047l13.476 15.325c0.734 0.835 1.926 0.837 2.662 0.005s0.738-2.182 0.005-3.017l-10.862-12.274 10.945-12.447c0.734-0.835 0.732-2.185-0.005-3.017s-1.928-0.829-2.662 0.005l-13.559 15.42z'></path></svg>");
+    position: 50% 50%;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+@mixin chevron-right($fill-color) {
+  background: {
+    image: svg-url("<svg fill='#{$fill-color}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 32'><path d='M16.775 15.953l-13.476-15.325c-0.734-0.835-1.926-0.837-2.662-0.005s-0.738 2.182-0.005 3.017l10.862 12.274-10.945 12.447c-0.734 0.835-0.732 2.185 0.005 3.017s1.928 0.829 2.662-0.005l13.559-15.42z'></path></svg>");
+    position: 50% 50%;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+@mixin close-icon($fill-color) {
+  background: {
+    image: svg-url("<svg fill='#{$fill-color}' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M1.185 3.334l28.338 28.202 2.107-2.117-28.338-28.202z'></path><path d='M29.523 1.217l-28.338 28.202 2.107 2.117 28.338-28.202z'></path></svg>");
+    position: 50% 50%;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+// Breakpoints
+@mixin media($max: false, $min: false) {
+  @if $max {
+    @if $min {
+      @media screen and (max-width: $max - 1) and (min-width: $min) { @content; }
+    } @else {
+      @media screen and (max-width: $max - 1) { @content; }
+    }
+  } @else {
+    @media screen and (min-width: $min) { @content; }
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == break-large {
+    @include media($max: $xlarge + $gutter-double) { @content; }
+  }
+  @if $point == break-small {
+    @include media($max: $xlarge + ($gutter-third * 2)) { @content; }
+  }
+
+  @if $point == xl {
+    @include media($min: $xlarge) { @content; }
+  }
+  @if $point == l {
+    @include media($min: $large) { @content; }
+  }
+  @if $point == m {
+    @include media($min: $medium) { @content; }
+  }
+  @if $point == ms {
+    @include media($min: $medium-small) { @content; }
+  }
+  @if $point == s {
+    @include media($min: $small) { @content; }
+  }
+  @if $point == xs {
+    @include media($max: $small) { @content; }
+  }
+
+  @if $point == l-only {
+    @include media($max: $xlarge, $min: $large) { @content; }
+  }
+  @if $point == m-only {
+    @include media($max: $large, $min: $medium) { @content; }
+  }
+  @if $point == ms-only {
+    @include media($max: $medium, $min: $medium-small) { @content; }
+  }
+  @if $point == s-only {
+    @include media($max: $medium-small, $min: $small) { @content; }
+  }
+  @if $point == xs-only {
+    @include media($max: $small) { @content; }
+  }
+
+  @if $point == l-down {
+    @include media($max: $xlarge) { @content; }
+  }
+  @if $point == m-down {
+    @include media($max: $large) { @content; }
+  }
+  @if $point == ms-down {
+    @include media($max: $medium) { @content; }
+  }
+  @if $point == s-down {
+    @include media($max: $medium-small) { @content; }
+  }
+}
+
+/*---------- Images ----------*/
+
+@mixin lazy-loaded-img() {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}

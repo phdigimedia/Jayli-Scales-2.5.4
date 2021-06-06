@@ -1,0 +1,62 @@
+.form-field-captcha {
+  @extend %paragraph;
+  float: left;
+  width: 100%;
+
+  @include breakpoint(m-down) {
+    font-size: 0;
+
+    .form-label,
+    .captcha-note { font-size: $body-font-size; }
+  }
+
+  .captcha-image {
+    @include align(middle);
+    padding: $gutter-third;
+    margin: $gutter-half;
+    margin-left: 0;
+    background-color: rgba($input-border, 0.5);
+    border: 1px solid $input-border;
+
+    @include breakpoint(m-down) {
+      width: 48%;
+      margin-right: 4%;
+    }
+
+    img {
+      display: block;
+      height: 75px;
+
+      @include breakpoint(m-down) {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  .form-field-control {
+    display: inline-block;
+    margin-right: 0;
+    vertical-align: middle;
+
+    @include breakpoint(m-down) { width: 48%; }
+
+    .form-input {
+      width: 150px;
+      min-width: 0;
+
+      @include breakpoint(m-down) {
+        width: 100%;
+        font-size: $body-font-size;
+      }
+    }
+  }
+
+  + .form-field { @extend %clearfix; }
+}
+
+// Recaptcha
+.recaptchatable img {
+  //scss-lint:disable ImportantRule - Fixes conflict with Recaptcha images and RTE image defaults
+  width: 100% !important;
+}

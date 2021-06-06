@@ -1,0 +1,133 @@
+// Toggle
+.search-form-toggle {
+  svg {
+    @include align(middle);
+    width: 22px;
+    height: 22px;
+
+    @include breakpoint(m-down) { display: none; }
+  }
+}
+
+// Container
+.header-search-form {
+  @extend %revealer-fade;
+  @include opacity-background($header-background, $property: header-background);
+  @include coverer();
+  z-index: 10;
+  display: none;
+  transition: width 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    position: relative;
+    display: block;
+    height: 185px;
+    margin-bottom: 0;
+  }
+
+  .search-form {
+    @include breakpoint(m-down) {
+      position: absolute;
+      bottom: $gutter;
+      width: calc(100% - #{$gutter-double});
+    }
+
+    @include breakpoint(s-down) { width: calc(100% - #{$gutter}); }
+  }
+}
+
+// Label
+.search-form-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 80%;
+  height: 100%;
+
+  @include breakpoint(m-down) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+}
+
+.search-form-label-text {
+  @extend .show-for-sr;
+}
+
+// Input
+.search-form-input {
+  @extend %h3;
+  @include coverer();
+  padding: $gutter;
+  font-weight: lighter;
+  letter-spacing: 0.05em;
+  color: $header-color;
+  background-color: transparent;
+  border: 0;
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    position: relative;
+    height: 50px;
+    padding: 0;
+    border-bottom: 2px solid $header-accent;
+  }
+
+  @include breakpoint(ms-down) { font-size: $h5-size; }
+
+  &:focus {
+    border-color: transparent;
+    outline: none;
+
+    @include breakpoint(m-down) { border-bottom-color: $header-color; }
+
+    &::placeholder {
+      @include breakpoint(m-down) { color: contrast($header-background, 80%); }
+    }
+  }
+
+  &::placeholder {
+    color: rgba($header-color, 0.5);
+    transition: color 0.3s $ease-out-quad;
+  }
+}
+
+// Submit Button
+.search-form-submit {
+  @extend %button-reset;
+  @extend %h3;
+  @include center-vertical();
+  right: $gutter;
+  display: block;
+  letter-spacing: 0.05em;
+  color: $header-color;
+
+  @include breakpoint(m-down) { display: none; }
+
+  .search-form-submit-icon {
+    $search-icon: 30px;
+    position: absolute;
+    top: 50%;
+    right: $gutter;
+    width: $search-icon / 2;
+    height: $search-icon;
+    margin-top: -($search-icon / 2);
+    fill: $header-color;
+  }
+}
+
+// Overlay
+.search-form-overlay {
+  @extend %revealer-fade;
+  @include coverer();
+  position: fixed;
+  z-index: 15;
+  background-color: rgba($dark-color, 0.6);
+
+  @include breakpoint(m-down) {
+    //scss-lint:disable ImportantRule - Override revealer.js
+    display: none !important;
+  }
+}

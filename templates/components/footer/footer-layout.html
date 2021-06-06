@@ -1,0 +1,43 @@
+<footer class="footer-main" role="banner">
+  {{#any settings.gift_certificates_enabled settings.account_creation_enabled}}
+    <nav class="footer-navigation">
+      {{> components/footer/footer-navigation}}
+    </nav>
+  {{/any}}
+
+  {{#if social_media.length}}
+    <nav class="footer-social">
+      {{> components/footer/footer-social}}
+    </nav>
+  {{/if}}
+
+  {{#if settings.show_newsletter_box}}
+    <nav class="footer-newsletter">
+      {{> components/footer/footer-newsletter}}
+
+      {{#if settings.show_newsletter_summary}}
+        <div class="newsletter-summary">
+          {{settings.newsletter_summary}}
+        </div>
+      {{/if}}
+    </nav>
+  {{/if}}
+
+  <div class="footer-branding">
+    {{> components/footer/footer-branding}}
+  </div>
+
+  {{#if theme_settings.geotrust-ssl-common-name}}
+    {{> core/geotrust-ssl-seal}}
+  {{/if}}
+
+  <div class="footer-credits">
+    {{> components/footer/footer-credits}}
+  </div>
+
+  <div class="footer-payment-icons">
+    {{> components/common/payment-icons}}
+  </div>
+</footer>
+
+<div class="search-form-overlay" data-search-form-overlay></div>

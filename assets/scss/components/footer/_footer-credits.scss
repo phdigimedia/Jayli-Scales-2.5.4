@@ -1,0 +1,27 @@
+.footer-credits-list-item {
+  @include align(middle);
+
+  @include breakpoint(m-down) { display: block; }
+
+  @include breakpoint(m) { padding-right: 20px; }
+
+  &:last-of-type {
+    @include breakpoint(m-down) { margin-bottom: $gutter; }
+  }
+
+  p {
+    @include align(middle);
+    margin: 0;
+    font-family: inherit;
+    font-size: $footer-font-size / 1.2;
+    font-weight: inherit;
+    line-height: 1.4;
+    color: $footer-accent;
+  }
+
+  a {
+    color: mix($footer-color, $footer-accent, 50%);
+
+    &:hover { color: $footer-color; }
+  }
+}

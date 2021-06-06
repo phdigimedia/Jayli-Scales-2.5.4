@@ -1,0 +1,46 @@
+---
+brand:
+  products:
+    limit: {{theme_settings.collection_products_per_page}}
+---
+
+{{#partial "page"}}
+
+  {{> components/collection/collection-header collection=brand}}
+
+  {{{region name="brand_below_header"}}}
+
+  {{#if banners.top.length}}
+    {{> components/common/banner
+      banners=banners.top_metadata
+    }}
+  {{/if}}
+
+  <main class="product-collection-container" data-collection>
+    <section class="product-collection-container-inner">
+
+      {{> components/collection/collection-sorting collection=brand}}
+
+      <aside class="product-collection-filter-sidebar" data-collection-sidebar>
+        {{> components/collection/brand/brand-sidebar}}
+      </aside>
+
+      <section
+        class="product-collection-item-list-container"
+        data-collection-product-list
+        data-quick-shop-scope
+        {{#if settings.data_tag_enabled}}
+          data-list-name="{{lang 'data_tags.brand' name=brand.name}}"
+        {{/if}}
+      >
+        {{> components/collection/brand/brand-products}}
+      </section>
+
+    </section>
+
+    {{{region name="brand_below_content"}}}
+  </main>
+
+{{/partial}}
+
+{{> layout/base}}

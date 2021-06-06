@@ -1,0 +1,80 @@
+// Container
+.form-field-product-list {
+  width: 100%;
+
+  .form-field-control { border: 2px solid $input-border; }
+}
+
+// Inputs
+
+.form-field-product-list .form-input {
+  @extend .show-for-sr;
+}
+
+// Items
+.form-field-product-list .form-label,
+.product-picklist-no-image {
+  position: relative;
+  padding: $gutter-half;
+
+  &::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    border-top: 2px solid $input-border;
+    content: "";
+  }
+
+  &:last-child {
+    &::after { display: none; }
+  }
+
+  .product-picklist-image-wrap {
+    padding: 5px;
+    border: 2px solid $input-border;
+    transition: all 0.3s $ease-out-quad;
+  }
+
+  img { display: block; }
+}
+
+// Radios
+.form-field-product-list .form-input,
+.product-picklist-item-body,
+.product-picklist-image-wrap,
+.product-picklist-label-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.form-field-product-list .form-input:checked {
+  + * {
+    color: $accent-color;
+
+    .product-picklist-image-wrap { border-color: $accent-color; }
+    .form-label-text { color: $accent-color; }
+    .form-label-text::after { background-color: $accent-color; }
+  }
+}
+
+.product-picklist-item-body {
+  @include row();
+
+  > * {
+    font-size: 14px;
+  }
+}
+
+.product-picklist-image-wrap {
+  @include align(middle);
+  width: 25%;
+}
+
+.product-picklist-label-text {
+  @include align(middle);
+  width: calc(75% - #{$gutter-third});
+  margin-left: $gutter-third;
+  font-style: italic;
+}

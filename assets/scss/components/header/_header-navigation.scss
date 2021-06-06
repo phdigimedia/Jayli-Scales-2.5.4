@@ -1,0 +1,369 @@
+// Tiers
+.header-navigation-list {
+  font-size: 0;
+
+  &.primary-tier {
+    display: inline-block;
+
+    @include breakpoint(m-down) {
+      @extend %revealer-fade;
+      @include coverer();
+      position: fixed;
+      z-index: 30;
+      display: none;
+      width: 500px;
+      padding: 0;
+      background-color: $header-background;
+      transform: translateX(-50px);
+      transition: width 0.5s $ease-out-quad, transform 0.5s $ease-out-quad;
+    }
+
+    @include breakpoint(ms-down) { width: 320px; }
+
+    &.visible {
+      @include breakpoint(m-down) { transform: translateX(0); }
+    }
+  }
+
+  &.secondary-tier,
+  &.extended-tier {
+    @extend %revealer-fade;
+    @include opacity-background($header-background, $property: header-background);
+    position: absolute;
+    z-index: 30;
+    padding: $gutter;
+    background-color: transparent;
+
+    @media screen and (min-width: $large) {
+      //using a vanilla media query to allow mixin at breakpoint
+      @include opacity-header-border($header-border, $property: header-border);
+      border: 1px solid transparent;
+    }
+
+    @include breakpoint(m-down) {
+      position: relative;
+      padding: $gutter-half 0 $gutter-half $gutter;
+    }
+
+    .navigation-dropdown-open & { background-color: $header-background; }
+
+    body:not(.default) & { background-color: rgba($header-background, 0.85); }
+
+    &.animating-out {
+      @include breakpoint(m-down) { display: none; }
+    }
+
+    .header-navigation-list-item-arrow {
+      margin-top: -4px;
+      transform: rotate(0);
+    }
+  }
+
+  &.secondary-tier {
+    top: 100%;
+    margin-left: -$gutter;
+
+    @media screen and (min-width: $large) {
+      //scss-lint:disable ImportantRule - Override border-opacity mixin
+      border-top: 1px solid $header-background !important;
+    }
+
+    @include breakpoint(m-only) { margin-top: $gutter-third; }
+
+    .header-background-opacity-0 & {
+      @include breakpoint(m-down) { padding-right: 0; }
+    }
+  }
+
+  &.extended-tier {
+    left: 100%;
+    margin-top: -$header-font-size;
+
+    @include breakpoint(m-down) {
+      left: 0;
+      padding-left: 0;
+      margin-top: 0;
+    }
+
+    .header-navigation-product-categories & {
+      @extend %revealer-slide;
+    }
+
+    .header-background-opacity-0 & {
+      @include breakpoint(m-down) { padding: $gutter-half 0; }
+    }
+  }
+}
+
+.header-navigation-list-container {
+  display: block;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.header-navigation-list-top-block {
+  display: none;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  background: $header-background;
+  z-index: 13;
+
+  @include breakpoint(m-down) {
+    display: block;
+  }
+}
+
+// Left-positioned
+.header-navigation-list-left {
+  left: auto !important;
+  right: 100%;
+}
+
+// Overflow
+.header-navigation-list-overflow {
+  opacity: 1;
+  transition: opacity 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    display: block;
+    height: calc(100vh - 185px - 150px); // 100% - .header-search-form & .header-mobile-actions
+    overflow-y: auto;
+  }
+
+  @media(max-height: 500px) { height: auto; }
+
+  .search-form-visible & {
+    @include breakpoint(l) { opacity: 0; }
+  }
+}
+
+// Items
+.header-navigation-list-item {
+  @extend %smallcaps;
+  @include align(middle);
+  margin-right: $gutter;
+  font-size: $header-font-size;
+  white-space: nowrap;
+  transition: font-size 0.2s $ease-out-quad, padding 0.2s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    width: 100%;
+    padding: 0 $gutter;
+    margin-right: 0;
+    margin-bottom: $gutter-third;
+    overflow: hidden;
+    font-size: $h3-size;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+
+  @include breakpoint(ms-down) { font-size: $h5-size; }
+  @include breakpoint(s-down) { padding: 0 $gutter-half; }
+
+  &.has-children {
+    padding-right: $header-font-size * 1.1;
+
+    @include breakpoint(m-down) { padding-right: 0; }
+  }
+
+  .products-navigation & { white-space: normal; }
+
+  .primary-tier & { padding-top: 3px; }
+
+  .secondary-tier &,
+  .extended-tier & {
+    display: block;
+    margin: $gutter-half 0;
+
+    @include breakpoint(m-down) {
+      padding: $gutter-third 0 $gutter-third ($gutter-half + $gutter-third);
+      margin: 0;
+      font-size: $h6-size;
+      border-left: 2px solid $header-accent;
+    }
+
+    @include breakpoint(ms-down) {
+      padding: ($gutter-half / 3) 0 ($gutter-half / 3) ($gutter-third * 2);
+      font-size: $h6-size / 1.2;
+    }
+
+    &:first-of-type {
+      margin-top: 0;
+
+      @include breakpoint(m-down) { padding-top: $gutter-third; }
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+
+      @include breakpoint(m-down) { padding-bottom: $gutter-third; }
+    }
+  }
+
+  a {
+    color: inherit;
+
+    @include breakpoint(m-down) {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+// Labels
+.header-navigation-list-item-label {
+  @include align(middle);
+  position: relative;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    display: block;
+    width: 100%;
+    border-bottom: 0;
+  }
+
+  .header-navigation-list-item a:hover & {
+    @include breakpoint(l) { border-bottom-color: $header-color; }
+  }
+
+  * > & {
+    .menu-open > & { border-bottom-color: $header-color; }
+  }
+}
+
+// Icons
+.header-navigation-list-item-arrow {
+  $arrow-size: $header-font-size / 1.5;
+  position: absolute;
+  top: 50%;
+  right: -18px;
+  display: block;
+  width: 9px;
+  height: 9px;
+  margin-top: -5px;
+  transform: rotate(90deg);
+
+  @include breakpoint(m-down) { display: none; }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    width: $arrow-size;
+    height: $arrow-size;
+    margin-top: -($arrow-size / 2) - 1;
+
+    use { fill: $header-color; }
+  }
+}
+
+.header-navigation-list-item-toggle {
+  $toggle-box: 26px;
+  display: none;
+
+  @include breakpoint(m-down) {
+    position: absolute;
+    top: 50%;
+    right: $gutter;
+    display: block;
+    width: $toggle-box;
+    height: $toggle-box;
+    margin-top: -($toggle-box / 2) - 2;
+    border: 1px solid $header-accent;
+  }
+
+  @include breakpoint(ms-down) {
+    $toggle-box: 20px;
+    width: $toggle-box;
+    height: $toggle-box;
+    margin-top: -($toggle-box / 2);
+  }
+
+  @include breakpoint(s-down) { right: $gutter-half; }
+
+  .secondary-tier &,
+  .extended-tier & {
+    @include breakpoint(m-down) { border-color: transparent; }
+  }
+
+  .header-navigation-list-item-toggle-bar {
+    $toggle-line: 12px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: $toggle-line;
+    height: 2px;
+    margin: -1px 0 0 (-$toggle-line / 2);
+    background-color: mix($header-color, $header-accent, 30%);
+    transition: transform 0.2s $ease-out-quad;
+
+    @include breakpoint(ms-down) {
+      $toggle-line: 8px;
+      width: $toggle-line;
+      margin: -1px 0 0 (-$toggle-line / 2);
+    }
+
+    &:first-of-type { transform: rotate(90deg); }
+
+    .menu-open > a & { transform: none; }
+  }
+}
+
+//Mobile
+.mobile-navigation-trigger {
+  @extend %button-reset;
+  @include center-vertical();
+  left: $gutter;
+  z-index: 35;
+  display: none;
+  width: 44px;
+  height: 44px;
+  transition: left 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    left: $gutter - ($gutter-third / 2);
+    display: block;
+  }
+
+  @include breakpoint(s-down) { left: $gutter-half; }
+
+  .cart-preview-open & { z-index: 20; }
+}
+
+.mobile-navigation-trigger-bar {
+  position: absolute;
+  top: 15px;
+  left: 9px;
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: $header-color;
+  transition: all 0.3s $ease-out-quad;
+
+  .active & {
+    top: 20px;
+    transform: rotate(45deg);
+  }
+
+  &:last-of-type {
+    top: 24px;
+
+    .active & {
+      top: 20px;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.header-navigation-overlay {
+  @include breakpoint(m-down) {
+    @extend %revealer-fade;
+    @include coverer();
+    position: fixed;
+    z-index: 25;
+    background-color: rgba($dark-color, 0.6);
+    content: "";
+  }
+}

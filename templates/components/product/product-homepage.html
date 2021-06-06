@@ -1,0 +1,46 @@
+<section class="product-grid-homepage-container">
+  {{#if products.new.length}}
+    {{#if theme_settings.homepage_products_new_title}}
+      <h2 class="section-title">{{lang 'home.new_products'}}</h2>
+    {{/if}}
+
+    {{> components/product/product-homepage-items
+      products=products.new
+      mosaic=theme_settings.homepage_products_new_mosaic
+      full_width=theme_settings.homepage_products_new_fullwidth
+      data='new'
+    }}
+
+    {{{region name="home_below_new_products"}}}
+  {{/if}}
+
+  {{#if products.featured.length}}
+    {{#if theme_settings.homepage_products_featured_title}}
+      <h2 class="section-title">{{lang 'home.featured_products'}}</h2>
+    {{/if}}
+
+    {{> components/product/product-homepage-items
+      products=products.featured
+      mosaic=theme_settings.homepage_products_featured_mosaic
+      full_width=theme_settings.homepage_products_featured_fullwidth
+      data='featured'
+    }}
+
+    {{{region name="home_below_featured_products"}}}
+  {{/if}}
+
+  {{#if products.top_sellers.length}}
+    {{#if theme_settings.homepage_products_popular_title}}
+      <h2 class="section-title">{{lang 'home.popular_products'}}</h2>
+    {{/if}}
+
+    {{> components/product/product-homepage-items
+      products=products.top_sellers
+      mosaic=theme_settings.homepage_products_popular_mosaic
+      full_width=theme_settings.homepage_products_popular_fullwidth
+      data='top-sellers'
+    }}
+
+    {{{region name="home_below_top_products"}}}
+  {{/if}}
+</section>

@@ -1,0 +1,38 @@
+// Calculator
+.cart-shipping-form {
+  @extend %clearfix;
+  @extend %revealer-fade;
+  @include row();
+  padding: $gutter-third 0;
+
+  .form-field-control {
+    float: left;
+    width: 100%;
+  }
+
+  .form-field-text { margin-top: $gutter-third; }
+
+  .form-actions {
+    .button {
+      width: 100%;
+      height: $input-height;
+      padding: 0;
+      margin-top: $gutter-third;
+    }
+  }
+}
+
+// Quotes
+.cart-shipping-quotes {
+  .form-actions { margin-top: $gutter-third; }
+
+  .shipping-quote-cost {
+    font-weight: bold;
+    color: $body-color;
+
+    &::before {
+      padding: 0 ($gutter-third / 2);
+      content: "-";
+    }
+  }
+}

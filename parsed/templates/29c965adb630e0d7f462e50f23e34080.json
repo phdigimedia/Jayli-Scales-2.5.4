@@ -1,0 +1,4 @@
+{
+  "components/header/alert-messages": "{{#if shipping_messages}}\n  {{#each shipping_messages}}\n    {{> core/alerts/alert-info message=message dismissable=true}}\n  {{/each}}\n{{/if}}\n\n{{#if product.shipping_messages}}\n  {{#each product.shipping_messages}}\n    {{> core/alerts/alert-info message=message dismissable=true}}\n  {{/each}}\n{{/if}}\n",
+  "core/alerts/alert-info": "<div class=\"alert alert-info\">\n  {{#if dismissable}}<a class=\"alert-dismiss\">&times;</a>{{/if}}\n\n  <div class=\"alert-message\">\n    {{#if message}}\n      {{{message}}}\n    {{else}}\n      {{{this}}}\n    {{/if}}\n  </div>\n</div>\n"
+}

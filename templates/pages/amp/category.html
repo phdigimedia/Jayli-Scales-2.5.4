@@ -1,0 +1,80 @@
+---
+category:
+  shop_by_price: true
+  products:
+    limit: {{theme_settings.collection_products_per_page}}
+---
+
+{{#partial 'amp-cart-icon'}}
+  <div class="amp-mini-cart">
+    <a href="{{urls.cart}}">
+      <svg
+        class="bag-icon"
+        title="Open mini cart"
+        role="img"
+        width="100%"
+        height="100%"
+        viewBox="0 0 28 32"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <title>icon-bag</title>
+        <path d="M2.462 6.585h-0.759l-1.315 24.985h27.533l-1.315-24.985h-0.759z"></path>
+        <path d="M9.495 6.688c0.1-0.675 0.279-1.348 0.555-1.968 0.758-1.706 2.069-2.689 4.19-2.689 2.115 0 3.389 0.976 4.097 2.673 0.426 1.021 0.566 2.081 0.556 2.83-0 0.007 1.599 0.048 1.599 0.048 0-0.008 0-0.008 0-0.026 0.013-0.949-0.154-2.209-0.679-3.468-0.942-2.259-2.768-3.657-5.573-3.657-2.8 0-4.652 1.39-5.652 3.64-0.34 0.765-0.556 1.575-0.675 2.383-0.072 0.487-0.096 0.871-0.096 1.106h1.6c0-0.161 0.020-0.469 0.079-0.872z"></path>
+      </svg>
+
+      <span class="cart-preview-count" data-cart-preview-count>
+        {{#if cart.quantity '>' 0}}
+          {{> components/cart/cart-preview/cart-preview-count}}
+        {{else}}
+          0
+        {{/if}}
+      </span>
+    </a>
+  </div>
+{{/partial}}
+
+{{#partial 'amp-custom-header-styles'}}
+  {{> components/amp/styles/common}}
+{{/partial}}
+
+{{> core/amp/pages/category
+  header_background=theme_settings.header-background
+  header_text=theme_settings.header-color
+  body_background=theme_settings.body-background
+  color_headings=theme_settings.heading-color
+  color_text=theme_settings.body-color
+  footer_background=theme_settings.footer-background
+  footer_text=theme_settings.footer-color
+  color_accent=theme_settings.accent-color
+  color_borders=theme_settings.border-color
+}}
+
+{{#partial 'amp-product-listing'}}
+  {{> core/amp/category/product-listing
+    default=theme_settings.default_image
+    as_low_as=theme_settings.price_from
+    image_ratio=theme_settings.collection_products_aspect_ratio
+    image_cropping="image-cover"
+    catalog_columns="two"
+    info_alignment="center"
+  }}
+{{/partial}}
+
+{{#partial 'amp-footer'}}
+  {{> core/amp/common/footer
+    theme_credits=theme_settings.footer_theme_credits
+    theme_name="Scales"
+    store_copyright=theme_settings.footer_copyright
+  }}
+{{/partial}}
+
+{{#partial 'amp-social'}}
+  {{> components/amp/social-media-links}}
+{{/partial}}
+
+{{#partial 'amp-custom-footer-styles'}}
+  {{> components/amp/styles/footer}}
+{{/partial}}
+
+{{> layout/amp}}

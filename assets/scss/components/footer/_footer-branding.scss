@@ -1,0 +1,15 @@
+.footer-branding-logo {
+  display: block;
+
+  > img {
+    display: block;
+    max-width: $branding-size;
+    margin: 0 auto;
+  }
+}
+
+.footer-branding-text {
+  @extend %h3;
+
+  > a { color: $footer-color; }
+}

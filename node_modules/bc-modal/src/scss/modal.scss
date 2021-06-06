@@ -1,0 +1,57 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 980;
+  background-color: rgba(#000, 0.3);
+  display: none;
+  opacity: 0;
+
+  &.animating,
+  &.visible {
+    display: block;
+    transition: opacity 0.3s ease;
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: 0;
+
+  &.animating,
+  &.visible {
+    display: block;
+    transition: opacity 0.2s ease;
+  }
+
+  &.animating-in {
+    transition-delay: 0.1s;
+  }
+
+  &.visible {
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -1,0 +1,101 @@
+// Container
+.product-collection-container {
+  @extend %container-padding-small;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-collection-container-inner {
+  @include container();
+  @include row();
+
+  .collection-full-width & {
+    max-width: 100%;
+    margin: 0 $gutter-third;
+  }
+}
+
+// Sidebar
+.product-collection-filter-sidebar {
+  @include align(top);
+  width: 0;
+  opacity: 0;
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) { position: absolute; }
+
+  .show-sidebar & {
+    width: $collection-sidebar-width;
+    opacity: 1;
+
+    .collection-full-width & { padding-left: $gutter-half + ($gutter-third / 2); }
+  }
+
+  .facet-container { width: $collection-sidebar-width; }
+}
+
+// Collection
+.product-collection-item-list-container {
+  @include row();
+  @include align(top);
+  position: relative;
+  width: 100%;
+  transition: width 0.3s $ease-out-quad, transform 0.3s $ease-out-quad;
+
+  .show-sidebar & {
+    width: calc(100% - #{$collection-sidebar-width});
+
+    @include breakpoint(m-down) {
+      width: 100%;
+      transform: translateX(230px);
+    }
+  }
+
+  &::after {
+    .show-sidebar & {
+      @include breakpoint(m-down) {
+        @include coverer();
+        left: -($gutter-third / 2);
+        z-index: 15;
+        background-color: rgba($body-background, 0.6);
+        content: "";
+      }
+    }
+  }
+}
+
+.product-collection-item-list {
+  margin-right: -($gutter-third / 2);
+  margin-left: -($gutter-third / 2);
+
+  .collection-full-width & {
+    @include breakpoint(l-down) {
+      margin-right: -$gutter-half;
+      margin-left: -$gutter-half;
+    }
+  }
+}
+
+// Pagination
+.category-pagination {
+  width: 100%;
+  padding: $gutter-half;
+  margin-left: 0;
+  text-align: center;
+  transition: all 0.3s $ease-out-quad;
+}
+
+// Empty Message
+.empty-results {
+  display: table;
+  width: 100%;
+  min-height: 25vh;
+  text-align: center;
+
+  span {
+    @extend %meta-text;
+    @extend %smallcaps;
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

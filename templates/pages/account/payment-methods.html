@@ -1,0 +1,15 @@
+{{#partial "page"}}
+
+  {{> components/pages/page-header
+    page_title=(lang 'core.account.payment_methods.heading')
+  }}
+
+  <article class="page-content-wrapper">
+    <section class="page-content account-page">
+      {{> core/account/payment-methods}}
+    </section>
+  </article>
+
+{{/partial}}
+
+{{> layout/base}}

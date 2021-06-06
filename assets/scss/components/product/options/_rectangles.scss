@@ -1,0 +1,45 @@
+// Rectangles
+.form-field-rectangle {
+  $rectangle-size: $input-height;
+  font-size: 0;
+
+  .form-field-control { margin-bottom: -($gutter-third); }
+
+  .form-input { @extend .show-for-sr; }
+
+  .rectangle {
+    display: inline-block;
+    margin: 0 $gutter-third $gutter-third 0;
+    user-select: none;
+  }
+
+  .rectangle-text {
+    @extend %paragraph;
+    display: block;
+    height: $rectangle-size;
+    min-width: $rectangle-size;
+    padding: 0 $gutter-third;
+    overflow: hidden;
+    font-size: $body-font-size;
+    line-height: $rectangle-size - 4;
+    color: $input-color;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 2px solid $input-border;
+    transition: all 0.2s $ease-out-quad;
+  }
+
+  .form-input:focus + .rectangle-text { color: $input-color; }
+
+  .form-input:checked + .rectangle-text {
+    color: $accent-color;
+    border-color: $accent-color;
+  }
+
+  .form-input:hover + .rectangle-text {
+    color: $heading-color;
+    border-color: $heading-color;
+  }
+}

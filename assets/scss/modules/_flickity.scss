@@ -1,0 +1,150 @@
+// Layout
+.flickity-enabled {
+  position: relative;
+
+  &.is-draggable {
+    user-select: none;
+    tap-highlight-color: transparent;
+
+    .flickity-viewport {
+      //scss-lint:disable DuplicateProperty, NestingDepth
+      cursor: move;
+      cursor: grab;
+
+      &.is-pointer-down { cursor: grabbing; }
+    }
+  }
+
+  &:focus { outline: none; }
+}
+
+.flickity-viewport {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  @include breakpoint(s-down) { position: relative; }
+}
+
+// Controls
+.flickity-prev-next-button {
+  @extend %button-reset;
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+  cursor: pointer;
+  transition: background-color 0.3s $ease-out-quad;
+  user-select: none;
+
+  @include breakpoint(s-down) { display: none; }
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) { display: none; }
+  }
+
+  &.previous { left: 0; }
+
+  &.next { right: 0; }
+
+  &:active { opacity: 0.6; }
+
+  &:focus {
+    border: 0;
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: auto;
+    opacity: 0.3;
+  }
+
+  svg { @extend .show-for-sr; }
+}
+
+.carousel-arrows-disabled .flickity-prev-next-button { display: none; }
+
+.carousel-arrows-one .flickity-prev-next-button {
+  width: 55px;
+  height: 36px;
+  margin-top: -18px;
+  background-color: rgba($light-color, 0.5);
+  border: 14px solid transparent;
+
+  &.previous { @include arrow-left($heading-color); }
+  &.next { @include arrow-right($heading-color); }
+
+  &:hover { background-color: $light-color; }
+}
+
+.carousel-arrows-two .flickity-prev-next-button {
+  width: 100px;
+  height: 40px;
+  margin-top: -20px;
+  background-color: transparent;
+  border: 14px solid transparent;
+
+  &.previous { @include arrow-left($light-color); }
+  &.next { @include arrow-right($light-color); }
+}
+
+.carousel-arrows-three .flickity-prev-next-button {
+  width: 80px;
+  height: 40px;
+  margin-top: -20px;
+  background-color: transparent;
+
+  &.previous { @include chevron-left($light-color); }
+  &.next { @include chevron-right($light-color); }
+}
+
+
+.flickity-page-dots {
+  position: absolute;
+  bottom: $gutter;
+  z-index: 10;
+  width: 100%;
+  padding: 0;
+  text-align: center;
+
+  @include breakpoint(s-down) { display: none; }
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) { display: none; }
+  }
+
+  .dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: rgba($accent-color, 0.25);
+    border-radius: 50%;
+
+    &.is-selected { background-color: $accent-color; }
+  }
+}
+
+// Fade Transition
+.carousel-transition-fade {
+  //scss-lint:disable ImportantRule - Override default slide transition
+  .flickity-slider { transform: none !important; }
+
+  .carousel-item,
+  .product-gallery-slideshow-image {
+    left: 0 !important;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+
+    &.is-selected {
+      z-index: 10;
+      opacity: 1;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+// Container
+.blog-index {
+  @extend %container-padding;
+  @include container();
+  width: 100%;
+  padding-bottom: $gutter-double;
+}
+
+.blog-item-list {
+  @include row();
+}
+
+// Pagination
+.blog-pagination {
+  display: block;
+  max-width: $max-width;
+  padding: 0 $gutter;
+  margin: $gutter-double auto 0;
+  font-size: 0;
+  text-align: center;
+
+  .pagination-previous,
+  .pagination-next {
+    margin: 0;
+    font-size: $body-font-size;
+  }
+}

@@ -1,0 +1,5 @@
+.rss-feed-article {
+  display: block;
+
+  &:not(:last-child) { margin-bottom: $gutter-double; }
+}

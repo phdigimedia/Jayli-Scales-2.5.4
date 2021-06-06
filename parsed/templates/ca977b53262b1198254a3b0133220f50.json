@@ -1,0 +1,3 @@
+{
+  "components/amp/styles/footer": ".amp-footer-credits {\n  font-size: 13px;\n}\n\n.footer-social-list {\n  margin-left: 0;\n  margin-bottom: 40px;\n  list-style: none;\n}\n\n.footer-social-list-item {\n  display: inline-block;\n  vertical-align: middle;\n  margin: 0 7.5px;\n}\n\n.footer-social-list-item:first-of-type {\n  margin-left: 0;\n}\n\n.footer-social-list-item:last-of-type {\n  margin-right: 0;\n}\n\n.footer-social-list-item-icon {\n  width: 21px;\n  height: 21px;\n  vertical-align: middle;\n  fill: currentColor;\n}\n"
+}

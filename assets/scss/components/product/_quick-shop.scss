@@ -1,0 +1,39 @@
+// Modal
+.quick-shop-wrapper,
+.quick-shop {
+  //scss-lint:disable ImportantRule - Override Modal Defaults
+  @include breakpoint(m-down) { display: none !important; }
+}
+
+// Images
+.product-quickshop-image-list {
+  //scss-lint:disable ImportantRule - Override Default Inline Background
+  .product-gallery-image-container { background-image: none !important; }
+}
+
+.product-gallery-slideshow-thumbnail-list-single {
+  display: none !important;
+}
+
+// Details
+.product-quickshop-details-container {
+  padding-left: $gutter;
+
+  .product-details { padding-top: $gutter-double; }
+  .product-details-review-link { display: none; }
+}
+
+// Close
+.quick-shop-close {
+  @extend %button-reset;
+  position: absolute;
+  top: $gutter;
+  right: $gutter;
+  z-index: 35;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $heading-color;
+  }
+}

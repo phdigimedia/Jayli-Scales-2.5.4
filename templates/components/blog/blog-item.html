@@ -1,0 +1,35 @@
+<article
+  class="blog-item {{#if ../type '===' featured}}blog-featured-post{{/if}}"
+>
+  <figure class="blog-item-image-container">
+
+    <a class="blog-item-image" href="{{url}}">{{title}}</a>
+    {{#if thumbnail}}
+      {{> components/common/responsive-image
+        image=thumbnail
+        class="product-item-image"
+        fit="cover"
+        fallback_size=fallback_size
+        lazyload=lazyload
+        default_image=default_image
+      }}
+    {{else}}
+      <img
+        class="product-item-image"
+        src="{{cdn '/assets/img/no-image.svg'}}"
+      />
+    {{/if}}
+  </figure>
+
+  <div class="blog-item-details-container">
+    <div class="blog-item-details">
+      <a class="blog-item-details-text" href="{{url}}">
+        <h4 class="blog-item-title">{{title}}</h4>
+
+        {{#if date_published}}
+          <p class="blog-item-date">{{date_published}}</p>
+        {{/if}}
+      </a>
+    </div>
+  </div>
+</article>

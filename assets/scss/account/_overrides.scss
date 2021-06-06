@@ -1,0 +1,257 @@
+// Account Overrides
+//scss-lint:disable ImportantRule - Override global account styles
+
+// Navigation
+.account-nav-list {
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+.account-nav-item.is-active {
+  color: $account-accent-color;
+}
+
+// Layout
+.account-page {
+  max-width: $max-width !important;
+
+  form {
+    @include row();
+
+    tr {
+      font-size: $body-font-size;
+    }
+
+    .account-return-table {
+      .form-field {
+        width: 100% !important;
+        padding-right: 0 !important;
+
+        .form-input {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  .form-field:not(.account-item-checkbox) {
+    @include align(top);
+    float: none;
+
+    &:nth-child(odd) {
+      @include col(1, 2, $first: true);
+      padding-left: 0 !important;
+
+      @include breakpoint(m-down) {
+        width: 100%;
+        padding: 0;
+      }
+    }
+
+    &:nth-child(even) {
+      @include col(1, 2, $last: true);
+      padding-right: 0 !important;
+
+      @include breakpoint(m-down) {
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+}
+
+@include breakpoint(ms-down) {
+  .account-nav {
+    width: 100%;
+    float: none;
+    padding-right: 0;
+    margin-bottom: 30px;
+  }
+
+  .account-body {
+    width: 100%;
+    float: none;
+    padding-left: 0;
+  }
+}
+
+// Header
+.account-header {
+  margin-bottom: 0;
+
+  .account-heading { display: none; }
+
+  .account-toolbar:not(:empty) {
+    display: block;
+    padding-bottom: $gutter-half;
+    margin-bottom: $gutter;
+    border-bottom: 1px solid $account-border-color;
+
+    .account-tool { @extend .button, .button-small; }
+
+    @media only screen and (max-width: $account-breakpoint-small) {
+      display: flex;
+      flex-direction: column;
+
+      .account-tool {
+        width: 100%;
+
+        &:not(last-of-type) {
+          margin-bottom: $gutter-half;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+// Alerts
+.account-body .alert { margin: $gutter auto !important; }
+
+// Itms
+.account-items {
+  .account-item:first-of-type {
+    border-top: 0;
+
+    > * { padding-top: 0; }
+  }
+}
+
+// Content
+.account-content {
+  @extend %paragraph;
+}
+
+.account-page-orders-receipt .account-content {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.account-receipt-download {
+  @extend .button-small, .button-alt;
+}
+
+.account-receipt-summary-address {
+  margin-left: 0 !important;
+  list-style: none !important;
+}
+
+// Messages
+.account-messages-table { margin-top: 0; }
+
+.account-messages-table-message:first-of-type {
+  > td {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+// New Account Form
+.account-create {
+  .button { @extend .button-alt; }
+}
+
+// Forgot password form
+.account-forgot-form {
+  display: block;
+
+  .form-field {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-actions {
+    display: inline-block;
+    float: none;
+    width: 35%;
+
+    .button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Wishlists
+.wishlist-form {
+  .form-field-checkbox {
+    display: block !important;
+    padding-left: 0 !important;
+  }
+}
+
+// Buttons
+.account-page .form-actions,
+.account-item-actions {
+  .button {
+    margin-right: $gutter-half;
+    margin-left: 0;
+
+    &:nth-child(even) {
+      @extend .button-alt;
+    }
+
+    &:last-child { margin-right: 0; }
+  }
+}
+
+.account-item-actions {
+  .form {
+    font-size: 0;
+  }
+
+  .button {
+    @extend .button-small;
+  }
+}
+
+.account-forgot-password-link {
+  font-size: $body-font-size;
+}
+
+// Payment methods overrides
+.payment-method-form {
+  .form-field:nth-child(odd) {
+    width: 100%;
+  }
+
+  .payment-method-form-inputs-icon {
+    top: 38px !important;
+    right: 25px !important;
+  }
+
+  .form-field-checkbox {
+    padding-left: 0 !important;
+
+    .form-input,
+    .form-checkbox {
+      position: static;
+      z-index: 1;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+    }
+
+    .form-field-title {
+      margin-left: 20px;
+    }
+  }
+}
+
+.payment-method {
+  @media only screen and (max-width: 955px) {
+    width: 100%;
+  }
+}
+
+[data-address-form] {
+  font-size: 14px !important;
+}
+
+.billing-addess-form {
+  .form-field {
+    float: left;
+  }
+}

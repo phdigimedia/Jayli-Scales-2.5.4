@@ -1,0 +1,48 @@
+// Slideshow
+.product-gallery-slideshow-images {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .flickity-viewport {
+    margin-bottom: 0;
+    max-height: none;
+  }
+
+  .flickity-page-dots,
+  .flickity-prev-next-button {
+    display: none;
+
+    .visible-controls & { display: block; }
+  }
+
+  .flickity-page-dots { bottom: $gutter-half; }
+}
+
+// Thumbnails
+.product-gallery-slideshow-thumbnail-list {
+  @extend %clearfix;
+  @include row();
+  display: none;
+  margin: 0 (- $gutter-half / 2);
+
+  .flickity-enabled + & { display: block; }
+}
+
+.product-gallery-slideshow-thumbnail {
+  @include align(middle);
+  @include maintain-ratio(1 1);
+  width: calc(25% - #{$gutter-half});
+  padding-bottom: calc(25% - #{$gutter-half});
+  margin: $gutter-half ($gutter-half / 2) 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: 50% 50%;
+  background-size: cover;
+  transition: opacity 0.3s $ease-out-quad;
+  backface-visibility: hidden;
+
+  &:hover { opacity: 0.75; }
+}

@@ -1,0 +1,15 @@
+.breadcrumbs-container {
+  @extend %paragraph;
+  width: 100%;
+  padding: $gutter-half 0 0;
+  margin-top: $gutter-third;
+  color: $meta-color;
+  text-align: center;
+
+  a {
+    padding: 0 ($gutter-third / 2);
+    color: inherit;
+
+    &:hover { color: $accent-color; }
+  }
+}

@@ -1,0 +1,52 @@
+// Header
+.product-collection-header {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: $gutter-double;
+  text-align: center;
+  transition: padding 0.3s $ease-out-quad;
+  overflow: hidden;
+
+  @include breakpoint(m-down) {
+    padding: $gutter;
+  }
+}
+
+.product-collection-header-inner {
+  position: relative;
+  display: table;
+  max-width: 540px;
+  padding: $gutter;
+  margin: 0 auto;
+  color: $body-color;
+  background: $body-background;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ul,
+  ol {
+    text-align: left;
+  }
+}
+
+.product-collection-header-title {
+  @extend %h2;
+  margin-bottom: $gutter-third;
+}
+
+.product-collection-header-image {
+  @include lazy-loaded-img();
+  width: 100%;
+  height: 100%;
+}

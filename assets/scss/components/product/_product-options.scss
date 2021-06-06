@@ -1,0 +1,20 @@
+// Container
+.product-details-container {
+  margin: $gutter-double 0;
+
+  .required-text { color: $error-color; }
+
+  .form-field:not(.product-details-add-cart):not(.form-field-quantity) {
+    $option-spacing: $gutter-half + $gutter-third;
+    margin-bottom: $option-spacing;
+  }
+
+  &.no-purchase { margin-bottom: $gutter-half; }
+}
+
+// Unavailable
+.option-unavailable {
+  opacity: 0.5;
+
+  .form-label-text { text-decoration: line-through; }
+}

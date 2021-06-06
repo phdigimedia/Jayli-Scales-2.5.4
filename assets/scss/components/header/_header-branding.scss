@@ -1,0 +1,26 @@
+.header-branding-text {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @include breakpoint(m-down) { font-size: $h3-size; }
+  @include breakpoint(s-down) { font-size: $h5-size; }
+
+  > a {
+    color: $header-color;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s $ease-out-quad;
+
+    &:hover {
+      @include breakpoint(l) { border-bottom-color: $header-color; }
+    }
+  }
+}
+
+.header-branding-logo {
+  > img {
+    display: block;
+    max-height: $branding-size;
+
+    @include breakpoint(m-down) { margin: 0 auto; }
+  }
+}

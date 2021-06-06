@@ -1,0 +1,39 @@
+<div
+  class="
+  product-grid-homepage-container-inner
+  {{#if mosaic}}product-grid-mosaic{{/if}}
+  {{#if full_width}}product-grid-full-width{{/if}}"
+  data-quick-shop-scope
+  {{#if settings.data_tag_enabled}}
+    {{#if data '===' 'featured'}}
+      data-list-name="{{lang 'data_tags.featured'}}"
+    {{/if}}
+    {{#if data '===' 'new'}}
+      data-list-name="{{lang 'data_tags.new'}}"
+    {{/if}}
+    {{#if data '===' 'top-sellers'}}
+      data-list-name="{{lang 'data_tags.popular'}}"
+    {{/if}}
+  {{/if}}
+>
+  <div class="product-grid-homepage-list">
+    {{#each products}}
+      {{> components/product/product-item
+        this
+        overlay=../theme_settings.collection_products_overlay_type
+        price_range_display=../theme_settings.price_range_display
+        retail_price_label=../theme_settings.retail-price-label
+        non_sale_price_label=../theme_settings.non-sale-price-label
+        sale_price_label=../theme_settings.sale-price-label
+        price_label=../theme_settings.price-label
+        sale_badges=../theme_settings.sale-badges
+        fallback_size=../theme_settings.medium
+        lazyload=../theme_settings.lazyload_mode
+        default_image=../theme_settings.default_image
+        data_tag_enabled=../settings.data_tag_enabled
+        event="list"
+        position=(add @index 1)
+      }}
+    {{/each}}
+  </div>
+</div>

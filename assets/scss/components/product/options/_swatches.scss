@@ -1,0 +1,117 @@
+// Swatches
+.form-field-swatch {
+  $swatch-size: 30px;
+
+  .form-field-control {
+    @extend %clearfix;
+    display: inline-block;
+  }
+
+  .form-input,
+  .form-label-text { @extend .show-for-sr; }
+
+  .swatch-wrap {
+    //scss-lint:disable NestingDepth
+    @include align(middle);
+    position: relative;
+    width: $swatch-size;
+    height: $swatch-size;
+    margin-right: $gutter-third;
+    margin-bottom: $gutter-third;
+
+    .swatch {
+      position: relative;
+      display: block;
+      width: $swatch-size;
+      height: $swatch-size;
+      padding: 0;
+      cursor: pointer;
+      user-select: none;
+
+      &::before {
+        box-shadow: inset 0 0 0 2px transparent;
+        transition: all 0.4s $ease-out-quad;
+      }
+    }
+
+    .form-input + .swatch {
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+        display: block;
+        width: $swatch-size;
+        height: $swatch-size;
+        content: "";
+        box-shadow: inset 0 0 0 2px $input-border;
+      }
+    }
+
+    .form-input:hover + .swatch,
+    .form-input:checked + .swatch {
+      &::before { box-shadow: inset 0 0 0 2px $accent-color; }
+    }
+
+    .form-input:checked + .swatch {
+      &::before { box-shadow: inset 0 0 0 2px $heading-color; }
+    }
+
+    &.swatch-none {
+      .swatch {
+        border: 0; //override swatch border in core/_swatch.scss file
+      }
+    }
+  }
+
+  .swatch-color {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;
+  }
+
+  .swatch-value {
+    @extend %metatext;
+    margin-left: 4px;
+    font-weight: lighter;
+    text-transform: capitalize;
+
+    @include breakpoint(m-only) {
+      display: block;
+      margin-top: 10px;
+    }
+  }
+
+  .two-colors {
+    .secondary { top: 50%; }
+  }
+
+  .three-colors {
+    .secondary { top: 33.33%; }
+    .tertiary { top: 66.66%; }
+  }
+
+  .swatch-pattern-expanded {
+    position: absolute;
+    bottom: calc(100% + #{$gutter-half});
+    left: 50%;
+    z-index: 10;
+    display: none;
+    padding: 3px;
+    background-color: $body-background;
+    border: 1px solid $heading-color;
+    border-radius: 3px;
+    transform: translateX(-50%);
+
+    img {
+      display: block;
+      width: 310px;
+      max-width: none;
+    }
+  }
+
+  .swatch-wrap:hover .swatch-pattern-expanded { display: block; }
+}

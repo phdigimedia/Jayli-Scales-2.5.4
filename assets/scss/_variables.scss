@@ -1,0 +1,36 @@
+// Grid
+$max-width: 1280px;
+$gutter: 30px;
+$gutter-half: $gutter / 2;
+$gutter-third: $gutter / 3;
+$gutter-double: $gutter * 2;
+
+// Breakpoints
+$small: 380px;
+$medium-small: 420px;
+$medium: 760px;
+$large: 1040px;
+$xlarge: $max-width;
+
+// Typography
+$h1-size: 36px;
+$h2-size: 28px;
+$h3-size: 24px;
+$h4-size: 22px;
+$h5-size: 18px;
+$h6-size: 16px;
+
+// Extra
+@if (stencilString("header-branding-size") == "header-branding-small") { $branding-size: 100px; }
+@if (stencilString("header-branding-size") == "header-branding-medium") { $branding-size: 150px; }
+@if (stencilString("header-branding-size") == "header-branding-large") { $branding-size: 250px; }
+
+$header-tools-width: 120px;
+$product-options-width: 330px;
+$collection-sidebar-width: 230px;
+$cart-totals-width: 300px;
+$cart-item-image-width: 120px;
+$ease-out-quad: cubic-bezier(0.250,0.460,0.450,0.940);
+$input-radius: 4px;
+$input-height: 45px;
+$input-height-small: 35px;

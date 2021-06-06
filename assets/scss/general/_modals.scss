@@ -1,0 +1,75 @@
+.modal-overlay {
+  //scss-lint:disable ImportantRule - Override JSPM Modal
+  @extend %revealer-fade;
+  @include coverer();
+  position: fixed;
+  z-index: 100 !important;
+  background-color: rgba($dark-color, 0.6) !important;
+  opacity: 0;
+  transition: all 0.2s $ease-out-quad;
+
+  &.visible { opacity: 1; }
+}
+
+.modal {
+  //scss-lint:disable ImportantRule - Override Revealer
+  @extend %revealer-fade;
+  @include coverer();
+  @include center-horizontal();
+  @include row();
+  position: fixed !important;
+  top: $gutter-double;
+  z-index: 105 !important;
+  display: none;
+  width: 100%;
+  height: auto;
+  max-width: $large;
+  max-height: calc(100vh - #{$gutter-double * 2});
+  padding: $gutter;
+  margin-top: 0 !important;
+  overflow-y: scroll;
+  background-color: $body-background;
+  opacity: 0;
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(l-down) { max-width: calc(100% - #{$gutter-double * 2}); }
+
+  @include breakpoint(ms-down) {
+    top: $gutter;
+    max-width: calc(100% - #{$gutter * 2});
+    max-height: calc(100vh - #{$gutter * 2});
+  }
+
+  @include breakpoint(s-down) {
+    top: $gutter-half;
+    max-width: calc(100% - #{$gutter-half * 2});
+    max-height: calc(100vh - #{$gutter-half * 2});
+    padding: $gutter-half;
+  }
+
+  &.visible { opacity: 1; }
+
+  .modal-wrapper.visible & {
+    display: block;
+    opacity: 1;
+  }
+
+  .form-field-control {
+    font-size: $body-font-size;
+  }
+}
+
+.modal-content { position: relative; }
+
+.modal-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 1;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: $heading-color;
+  }
+}

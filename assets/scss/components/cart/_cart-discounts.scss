@@ -1,0 +1,28 @@
+// Form
+.cart-discount-form {
+  @extend %revealer-fade;
+  @include row();
+  padding: $gutter-third 0;
+
+  .form-field,
+  .form-actions {
+    @include align(middle);
+  }
+
+  // Input
+  .form-field-text {
+    @include col(7, 10, $first: true, $gap: ($gutter-third / 2));
+    min-height: $input-height-small;
+  }
+
+  // Buttons
+  .form-actions {
+    @include col(3, 10, $last: true, $gap: ($gutter-third / 2));
+
+    .button {
+      width: 100%;
+      height: $input-height;
+      padding: 0;
+    }
+  }
+}

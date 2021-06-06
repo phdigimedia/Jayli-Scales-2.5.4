@@ -1,0 +1,123 @@
+<figure
+  class="product-item"
+  {{#if overlay '===' 'collection_procucts_overlay_image_preview'}}
+    data-product-id="{{id}}"
+    data-image-preview
+  {{/if}}
+  {{#if data_tag_enabled}}
+    data-event-type="{{event}}"
+    data-entity-id="{{id}}"
+    data-position="{{position}}"
+    data-name="{{name}}"
+    data-product-category="{{#each category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}"
+    data-product-brand="{{brand.name}}"
+    data-product-price="{{#if price.with_tax}}{{price.with_tax.value}}{{else}}{{price.without_tax.value}}{{/if}}"
+  {{/if}}
+>
+
+  <div class="product-item-container">
+
+    <a class="product-item-image-link" href="{{url}}" title="{{name}}">
+      {{#if image}}
+        {{> components/common/responsive-image
+          image=image
+          class="product-item-image"
+          fit="cover"
+          fallback_size=fallback_size
+          lazyload=lazyload
+          default_image=default_image
+        }}
+      {{else}}
+        <img
+          class="product-item-image"
+          src="{{cdn '/assets/img/no-image.svg'}}"
+        />
+      {{/if}}
+    </a>
+
+    {{#if overlay '===' 'collection_procucts_overlay_image_preview'}}
+      <div class="product-item-image-preview" data-image-preview-container>
+        {{> components/collection/collection-image-preview}}
+      </div>
+    {{/if}}
+  </div>
+
+  <div
+    class="product-item-overlay {{#if out_of_stock_message}}out-of-stock{{/if}}"
+  >
+    <div class="product-item-overlay-inner">
+      <div class="product-item-details">
+        {{#if out_of_stock_message}}
+          <span class="product-out-of-stock">
+            {{out_of_stock_message}}
+          </span>
+        {{else}}
+          {{#if brand.name}}
+            <span class="product-item-brand">
+              {{brand.name}}
+            </span>
+          {{/if}}
+        {{/if}}
+
+        {{#if show_rating}}
+        <div class="product-rating">
+          {{> components/reviews/ratings
+            rating=rating
+          }}
+        </div>
+      {{/if}}
+
+        <h5 class="product-item-name">
+          <a href="{{url}}" title="{{name}}">
+            {{name}}
+          </a>
+        </h5>
+
+        <span class="product-item-price">
+          {{> core/products/price
+            context="product-item"
+            retail_price_label=retail_price_label
+            non_sale_price_label=non_sale_price_label
+            sale_price_label=sale_price_label
+            price_label=price_label
+            show_tax_labels=true
+            show_amp_classes=true
+            price_range_display=price_range_display
+            sale_badges=sale_badges
+          }}
+        </span>
+
+        <a class="product-item-link" href="{{url}}" title="{{name}}">
+          <span class="product-item-link-label show-for-sr">
+            {{name}}
+          </span>
+        </a>
+
+        <button class="product-item-quick-shop" data-quick-shop-trigger="{{id}}">
+          <span class="product-item-quick-shop-label">
+            {{lang 'core.product.quickshop.view'}}
+          </span>
+          <svg><use xlink:href="#icon-plus"></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {{#if sale_badges}}
+    {{> core/products/sale-badge
+      classes="product-item-sale-badge"
+    }}
+  {{/if}}
+
+  {{#if show_remove}}
+    <form
+      class="form product-item-remove"
+      action="{{remove_url}}"
+      method="post"
+    >
+      <button type="submit">
+        <svg><use xlink:href="#icon-close"></svg>
+      </button>
+    </form>
+  {{/if}}
+</figure>

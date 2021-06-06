@@ -1,0 +1,24 @@
+// Headings
+.giftwrap-title {
+  @extend %h2;
+  padding-bottom: $gutter-half;
+  margin-top: 0;
+  text-transform: capitalize;
+  border-bottom: 1px solid $border-color;
+}
+
+.giftwrap-caption {
+  @extend %paragraph;
+  text-transform: none;
+}
+
+// Form
+.giftwrap-form {
+  padding: $gutter-half + $gutter-third;
+  border: 1px solid $border-color;
+
+  .form-field { margin-bottom: $gutter-half; }
+}
+
+.giftwrap-form-options,
+.giftwrap-form-settings { margin-bottom: $gutter; }

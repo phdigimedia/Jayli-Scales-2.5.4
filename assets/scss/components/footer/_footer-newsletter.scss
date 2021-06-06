@@ -1,0 +1,54 @@
+.footer-newsletter-label {
+  position: relative;
+}
+
+.footer-newsletter-input {
+  @extend %paragraph;
+  display: inline-block;
+  min-width: 230px;
+  padding: ($gutter-third / 2) 0;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+  border: {
+    top: 0;
+    right: 0;
+    bottom: 1px solid $footer-accent;
+    left: 0;
+  }
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(l) { width: 100%; }
+
+  @include breakpoint(m-down) { text-align: center; }
+
+  &:focus {
+    border-bottom-color: $footer-color;
+    outline: none;
+
+    + .footer-newsletter-submit-button { opacity: 1; }
+  }
+
+  &::placeholder { color: $footer-accent; }
+}
+
+.footer-newsletter-submit-button {
+  @extend %button-reset;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin: -7px 0 0;
+  opacity: 0;
+  transition: opacity 0.3s $ease-out-quad;
+
+  .footer-newsletter-submit-icon {
+    display: block;
+    width: 14px;
+    height: 14px;
+    fill: $footer-color;
+  }
+}
+
+.newsletter-summary {
+  margin-top: ($gutter-third / 2);
+}

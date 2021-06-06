@@ -1,0 +1,45 @@
+.user-defined-content {
+  .extended-media {
+    width: 130%;
+    height: auto;
+    max-width: 130%;
+    margin-left: -15%;
+    transition: all 0.3s linear;
+
+    @include breakpoint(m-down) {
+      width: 100%;
+      max-width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  p,
+  img,
+  .fluid-width-video-wrapper {
+    margin-top: $gutter-half;
+    margin-bottom: $gutter-half;
+    color: $body-color;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+
+    > *:first-child { margin-top: 0; }
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+
+    > *:last-child { margin-bottom: 0; }
+  }
+
+  a {
+    color: $user-defined-content-link-color;
+    text-decoration: underline;
+  }
+}

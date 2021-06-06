@@ -1,0 +1,54 @@
+// Tabs
+.search-tabs {
+  @extend %h6;
+
+  a {
+    padding: 2px 0;
+    border-bottom: 1px solid transparent;
+    transition: border-bottom 0.3s $ease-out-quad, color 0.3s $ease-out-quad;
+  }
+}
+
+.search-tab-title {
+  @include align(middle);
+
+  &.active {
+    color: $heading-color;
+
+    a { border-bottom-color: $heading-color; }
+  }
+
+  &:first-child::after,
+  &:last-child::before {
+    @include align(middle);
+    width: 1px;
+    height: $h4-size;
+    margin: 0 $gutter-third;
+    border-left: 1px solid $border-color;
+    content: "";
+  }
+}
+
+// Content Results
+.search-results-content {
+  @extend .page-content;
+  padding: $gutter-double 0;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.search-result-item {
+  padding-bottom: $gutter;
+  margin-bottom: $gutter;
+  border-bottom: 1px solid $border-color;
+
+  &:last-of-type {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+}
+
+.search-result-item-title { margin: 0; }
+
+.search-result-item-shop { margin-top: $gutter-half; }

@@ -1,0 +1,116 @@
+// Overlay
+.product-gallery-overlay {
+  @extend %revealer-fade;
+  @include coverer();
+  position: fixed;
+  z-index: 40;
+  min-height: 100vh;
+  background-color: $body-background;
+}
+
+.images-overlay-inner-container {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+}
+
+.product-gallery-image-container,
+.product-gallery-overlay-image {
+  //scss-lint:disable ImportantRule - Override inline styles
+  display: block;
+  max-width: 100%;
+  text-align: center;
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
+  .single-column & { background-image: none !important; }
+}
+
+.product-gallery-image-container {
+  img {
+    width: 100%;
+  }
+
+  .two-column & {
+    .product-grid-square & { @include maintain-ratio(1 1); }
+    .product-grid-tall & { @include maintain-ratio(4 5); }
+    .product-grid-taller & { @include maintain-ratio(2 3); }
+    .product-grid-wide & { @include maintain-ratio(3 2); }
+  }
+}
+
+// Overlay Thumbnails
+.product-gallery-overlay-thumbnails {
+  position: fixed;
+  top: $gutter + $gutter-half;
+  left: $gutter + $gutter-half;
+
+  @include breakpoint(l-down) {
+    top: $gutter;
+    left: $gutter;
+  }
+
+  @include breakpoint(m-down) {
+    top: $gutter-half;
+    left: $gutter-half;
+  }
+}
+
+.product-gallery-overlay-thumbnails-item {
+  width: 50px;
+  height: auto;
+  box-shadow: 0 1px 2px 0 transparent;
+  transition: all 0.3s $ease-out-quad;
+
+  &:hover {
+    @include breakpoint(l) { cursor: pointer; }
+  }
+
+  &:not(:last-child) { margin-bottom: $gutter-third; }
+
+  &.active {
+    box-shadow: 0 1px 2px rgba($dark-color, 0.3);
+
+    img { opacity: 1; }
+  }
+
+  img {
+    display: block;
+    width: 50px;
+    height: auto;
+    opacity: 0.5;
+    transition: opacity 0.3s $ease-out-quad;
+  }
+}
+
+// Close Button
+.images-overlay-close {
+  @extend %button-reset;
+  position: fixed;
+  top: $gutter + $gutter-half;
+  right: $gutter + $gutter-half;
+
+  @include breakpoint(l-down) {
+    top: $gutter;
+    right: $gutter;
+  }
+
+  @include breakpoint(m-down) {
+    top: $gutter-half;
+    right: $gutter-half;
+  }
+
+  svg {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    fill: $body-color;
+  }
+}

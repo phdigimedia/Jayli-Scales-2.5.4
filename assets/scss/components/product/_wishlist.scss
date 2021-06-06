@@ -1,0 +1,82 @@
+.wishlist-modal {
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  width: 400px;
+  padding: 20px;
+  text-align: left;
+  background: $body-background;
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+
+  &.animating,
+  &.visible {
+    display: block;
+  }
+
+  &.animating-in {
+    transform: translateY(-100px);
+    transition: transform 0.3s ease;
+  }
+
+  // initial state for leave transition
+  &.animating-out {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  // final states for both in and out
+  &.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .form-required .form-field-title {
+    display: none;
+  }
+
+  .form-field-options .form-label {
+    cursor: pointer;
+  }
+
+  .page-spinner {
+    z-index: 2;
+    transform: none;
+  }
+
+  .modal-close .modal-close-label {
+    display: none;
+  }
+
+  @include breakpoint(s-down) {
+    max-width: 100%;
+  }
+}
+
+.wishlist-form {
+  position: relative;
+}
+
+.wishlist-modal-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba($accent-color, 0.2);
+
+  .wishlist-modal.loading & {
+    display: block;
+  }
+}
+
+.wishlist-list-form .form-field-options {
+  margin-bottom: 20px;
+}
+
+.wishlist-form .wishlist-form-options {
+  margin-bottom: 20px;
+}

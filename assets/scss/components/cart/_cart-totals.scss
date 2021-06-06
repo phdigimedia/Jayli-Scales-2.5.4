@@ -1,0 +1,93 @@
+// Header
+.cart-total-title {
+  @extend %paragraph;
+  @include align(bottom);
+  padding: $gutter-third 0;
+  margin: 0;
+  font-size: $h6-size;
+  font-weight: bold;
+  line-height: 1;
+  text-transform: none;
+}
+
+// Container
+.cart-total-container {
+  padding-top: $gutter;
+  margin-bottom: $gutter-double;
+  border-top: 1px solid $border-color;
+
+  @include breakpoint(m-down) { margin-bottom: $gutter; }
+}
+
+// Items
+.cart-total-item {
+  @extend %clearfix;
+  padding: ($gutter-third / 2) 0;
+}
+
+.cart-total-item-label,
+.cart-total-item-value,
+.cart-total-item-toggle {
+  @extend %paragraph;
+  @include align(middle);
+
+  .cart-total & { font-weight: bold; }
+}
+
+.cart-total-item-value,
+.cart-total-item-toggle {
+  @extend %button-reset;
+  float: right;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.cart-total-item-toggle {
+  font-weight: bold;
+  color: $accent-color;
+  border-bottom: 1px solid $accent-color;
+}
+
+.cart-total-item-edit {
+  @extend %paragraph;
+  @extend %button-reset;
+  display: block;
+  font-size: $meta-font-size;
+  color: $accent-color;
+}
+
+// Buttons
+.cart-actions {
+  @include row();
+  margin: $gutter 0 $gutter;
+}
+
+.cart-actions-checkout {
+  .button {
+    width: 100%;
+    height: $input-height;
+    padding: 0;
+    line-height: $input-height - 4;
+  }
+}
+
+.cart-additional-checkout-buttons {
+  //scss-lint:disable ImportantRule - Override Paypal Embed
+  font-size: $body-font-size;
+  text-align: center;
+
+  p { float: none !important; }
+}
+
+// multiple shipping address link
+.checkout-multiple-container {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.checkout-multiple {
+  @extend %metatext;
+  line-height: 1.3;
+  color: $heading-color;
+  border-bottom: 1px solid $heading-color;
+}

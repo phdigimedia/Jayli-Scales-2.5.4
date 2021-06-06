@@ -1,0 +1,17 @@
+.footer-navigation-list-item {
+  @extend %paragraph;
+  @include align(middle);
+  margin: 0 $gutter-half;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+
+  &:first-of-type { margin-left: 0; }
+  &:last-of-type { margin-right: 0; }
+
+  a {
+    color: inherit;
+
+    &:hover { color: $footer-accent; }
+  }
+}

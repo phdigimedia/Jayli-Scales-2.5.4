@@ -1,0 +1,240 @@
+// Carousel
+//scss-lint:disable NestingDepth, ImportantRule - Override Flickity Defaults
+
+.carousel {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  background-color: $carousel-overlay-color;
+  transition: all 0.3s $ease-out-quad;
+
+  .carousel-height-cropped & {
+    height: 75vh;
+
+    @include breakpoint(s-down) {
+      height: 50vh;
+    }
+  }
+
+  img { display: none; }
+}
+
+.flickity-viewport {
+  height: 0;
+  overflow: hidden;
+
+  &.loaded {
+    transition: height 0.4s $ease-out-quad;
+  }
+
+  @include breakpoint(s-down) { height: auto !important; }
+
+  .carousel-height-cropped & { max-height: 75vh; }
+  .carousel-height-full & { height: $branding-size + $gutter-double; }
+
+  img { display: block; }
+}
+
+.carousel-slides {
+  display: none;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s $ease-out-quad;
+
+  .carousel-height-full & {
+    display: block;
+    max-height: $branding-size + $gutter-double;
+  }
+
+  .carousel-height-cropped & { max-height: 75vh; }
+
+  &.flickity-enabled {
+    display: block;
+    max-height: 100%;
+    opacity: 1;
+  }
+}
+
+// Item
+.carousel-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  transition: transform 0.4s $ease-out-quad;
+
+  &.is-selected {
+    @include breakpoint(s-down) { position: relative !important; }
+
+    + .carousel-item {
+      .carousel-item-image,
+      .carousel-item-image > img { height: 100%; }
+    }
+  }
+
+  .carousel-height-full &,
+  .carousel-height-cropped & { height: 100%; }
+}
+
+// Image
+.carousel-item-image {
+  .carousel-height-full &,
+  .carousel-height-cropped & {
+    display: block;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .carousel-height-full & { height: 100vh; }
+
+  .carousel-height-cropped & {
+    height: 100%;
+
+    @include breakpoint(s-down) {
+      height: 50vh;
+    }
+  }
+
+  img {
+    width: 100%;
+
+    .carousel-height-full &,
+    .carousel-height-cropped & { @extend .show-for-sr; }
+  }
+}
+
+// Overlay
+.carousel-overlay {
+  @include opacity-background($carousel-overlay-color, $property: carousel-overlay);
+  @include coverer();
+  background-color: transparent;
+  transition: background-color 0.3s $ease-out-quad;
+}
+
+.carousel-overlay-link {
+  @include coverer();
+  text-indent: -9999em;
+}
+
+// Text
+.carousel-item-info {
+  @include center-both();
+  z-index: 10;
+  width: 80%;
+  color: $carousel-text-color;
+  opacity: 0;
+  transition: opacity 0.3s $ease-out-quad;
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: $gutter $gutter ($gutter + 4);
+      background-color: $body-background;
+      transform: none;
+    }
+  }
+
+  .is-selected & { opacity: 1; }
+
+  *:first-child {
+    padding-top: $gutter;
+    margin-top: 0;
+
+    &.carousel-item-heading {
+      padding-top: $gutter - 5;
+
+      @include breakpoint(s-down) { padding-top: 0; }
+
+      .carousel-height-auto & {
+        @include breakpoint(ms-down) { padding-top: 0; }
+      }
+    }
+  }
+
+  *:last-child {
+    padding-bottom: $gutter;
+    margin-bottom: 0;
+
+    &.carousel-item-button {
+      padding-bottom: ($gutter-half - 2px);
+      margin-bottom: $gutter;
+
+      @include breakpoint(s-down) { margin-bottom: 0; }
+
+      .carousel-height-auto & {
+        @include breakpoint(ms-down) { margin-bottom: 0; }
+      }
+    }
+  }
+}
+
+.carousel-item-heading {
+  max-width: $large;
+  margin: $gutter-half auto;
+  font-size: $carousel-heading-font-size;
+  font-weight: $carousel-heading-font-weight;
+  letter-spacing: 4px;
+  color: inherit;
+  text-transform: uppercase;
+  transition: all 0.4s ease-in-out;
+
+  @include breakpoint(l-down) { font-size: $carousel-heading-font-size / 1.3; }
+
+  @include breakpoint(m-down) {
+    max-width: $medium-small;
+    font-size: $carousel-heading-font-size / 1.6;
+  }
+
+  @include breakpoint(s-down) {
+    font-size: $h3-size;
+  }
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) {
+      font-size: $h3-size;
+      color: $heading-color;
+    }
+  }
+}
+
+.carousel-item-caption {
+  max-width: $large;
+  margin: $gutter-half auto ($gutter-half + $gutter-third);
+  font-size: $carousel-caption-font-size;
+  font-weight: $carousel-caption-font-weight;
+  color: inherit;
+  transition: all 0.4s ease-in-out;
+
+  @include breakpoint(l-down) { font-size: $carousel-caption-font-size / 1.3; }
+
+  @include breakpoint(m-down) {
+    max-width: $medium-small;
+    margin: $gutter-half auto;
+    font-size: $carousel-caption-font-size / 1.6;
+  }
+
+  @include breakpoint(s-down) {
+    font-size: $h5-size;
+  }
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) {
+      font-size: $h5-size;
+      color: $body-color;
+    }
+  }
+}
+
+.carousel-item-button {
+  margin: $gutter-half 0;
+  line-height: 1;
+
+  @include breakpoint(s-down) { margin-top: 0; }
+
+  .carousel-height-auto & {
+    @include breakpoint(ms-down) { margin-top: 0; }
+  }
+}

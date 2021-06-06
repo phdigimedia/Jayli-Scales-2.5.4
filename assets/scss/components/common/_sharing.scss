@@ -1,0 +1,31 @@
+.sharing-buttons {
+  @include container();
+  margin-top: $gutter;
+  text-align: center;
+}
+
+.sharing-button {
+  @include align(middle);
+  padding: $gutter-third;
+
+  svg use,
+  svg use > use {
+    transition: fill 0.3s linear;
+    fill: currentColor;
+  }
+
+  &:hover {
+    svg use,
+    svg use > use { fill: $accent-color; }
+  }
+
+  &.has-fb-like { padding-top: 3px; }
+}
+
+.fb-like iframe { max-width: none; }
+
+.fb-like span {
+  //scss-lint:disable ImportantRule - Override Facebook Inline Styles
+  margin-top: -5px !important;
+  vertical-align: middle !important;
+}

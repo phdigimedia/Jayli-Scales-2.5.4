@@ -1,0 +1,65 @@
+// Alerts
+.alert {
+  @extend %paragraph;
+  position: relative;
+  font-family: $banner-font-family;
+  letter-spacing: 0.05em;
+  color: $light-color;
+  text-align: center;
+  transition: opacity 0.3s ease;
+
+  &.dismissed { opacity: 0; }
+  &.hidden { display: none; }
+
+  &.alert-success,
+  &.alert-error,
+  &.alert-info {
+    padding: $gutter-half;
+    margin: $gutter 0;
+  }
+
+  &.alert-success {
+    color: $light-color;
+    background-color: rgba($success-color, 0.6);
+  }
+
+  &.alert-error {
+    color: $light-color;
+    background-color: rgba($error-color, 0.6);
+  }
+
+  &.alert-info {
+    color: $body-color;
+    background-color: $border-color;
+
+    a { color: $body-color; }
+  }
+
+  a {
+    color: $light-color;
+    text-decoration: underline;
+  }
+}
+
+.alert-dismiss {
+  @include close-icon($light-color);
+  position: absolute;
+  top: $gutter-half;
+  right: $gutter-half;
+  width: 15px;
+  height: 15px;
+  text-indent: -9999em;
+  cursor: pointer;
+
+  .alert-info & {
+    @include close-icon($dark-color);
+  }
+}
+
+.site-alerts {
+  .alert-success,
+  .alert-error,
+  .alert-info {
+    margin: 0;
+  }
+}

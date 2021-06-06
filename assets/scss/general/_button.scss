@@ -1,0 +1,41 @@
+// Buttons
+.button {
+  padding: ($gutter-half - 2) ($gutter + $gutter-third);
+  font-family: $button-font-family;
+  font-size: $button-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: $button-font-weight;
+  color: $button-primary-color;
+  background-color: $button-primary-background;
+  border: 2px solid $button-primary-background;
+  transition: all 0.2s $ease-out-quad;
+
+  &:focus,
+  &:hover {
+    background-color: $button-primary-accent;
+    border-color: $button-primary-accent;
+    outline: none;
+  }
+
+  &.button-alt {
+    color: $button-secondary-color;
+    background-color: $body-background;
+    border-color: $button-secondary-background;
+
+    &:hover {
+      color: $button-secondary-accent;
+      border-color: $button-secondary-accent;
+    }
+  }
+
+  &.button-small {
+    padding: ($gutter-third / 2) $gutter-half;
+    font-size: $button-font-size-small;
+  }
+
+  &.button-disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.45;
+  }
+}

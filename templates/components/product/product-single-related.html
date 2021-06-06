@@ -1,0 +1,15 @@
+<header class="product-single-related-header product-single-section-header">
+  <h2 class="product-single-related-title section-title">{{lang 'product.related'}}</h2>
+</header>
+
+{{#each product.related_products}}
+  {{> components/product/product-item
+    overlay=../theme_settings.collection_products_overlay_type
+    fallback_size=../theme_settings.medium
+    lazyload=../theme_settings.lazyload_mode
+    default_image=../theme_settings.default_image
+    data_tag_enabled=../settings.data_tag_enabled
+    event="list"
+    position=(add @index 1)
+  }}
+{{/each}}

@@ -1,0 +1,137 @@
+%heading-text {
+  font-family: $heading-font-family;
+  -webkit-font-smoothing: antialiased;
+  color: $heading-color;
+  text-transform: uppercase;
+}
+
+%metatext {
+  font-family: $meta-font-family;
+  font-size: $meta-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: $meta-font-weight;
+  line-height: 1;
+  color: $meta-color;
+}
+
+%primary-font { font-family: get-font-family("primary-font"); }
+%primary-font-light { font-weight: get-font-weight("primary-font", "light"); }
+%primary-font-bold { font-weight: get-font-weight("primary-font", "bold"); }
+
+%secondary-font { font-family: get-font-family("secondary-font"); }
+%secondary-font-light { font-weight: get-font-weight("secondary-font", "light"); }
+%secondary-font-bold { font-weight: get-font-weight("secondary-font", "bold"); }
+
+%h1 {
+  @extend %heading-text;
+  font-size: $h1-size;
+}
+
+%h2 {
+  @extend %heading-text;
+  font-size: $h2-size;
+}
+
+%h3 {
+  @extend %heading-text;
+  font-size: $h3-size;
+}
+
+%h4 {
+  @extend %heading-text;
+  font-size: $h4-size;
+}
+
+%h5 {
+  @extend %heading-text;
+  font-size: $h5-size;
+}
+
+%h6 {
+  @extend %heading-text;
+  font-size: $h6-size;
+}
+
+%paragraph {
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  -webkit-font-smoothing: antialiased;
+  font-weight: $body-font-weight;
+  line-height: 1.6;
+}
+
+%smallcaps {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+%button-reset {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  appearance: normal;
+
+  &:focus { outline: none; }
+}
+
+%revealer-fade {
+  display: none;
+
+  &.visible,
+  &.animating { display: block; }
+
+  &.animating {
+    opacity: 0;
+    transition: all 0.4s $ease-out-quad;
+  }
+
+  &.visible { opacity: 1; }
+}
+
+%revealer-slide {
+  display: none;
+  transform: translateX(-$gutter);
+
+  &.visible,
+  &.animating { display: block; }
+
+  &.animating {
+    opacity: 0;
+    transition: all 0.4s $ease-out-quad;
+  }
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+%container-padding {
+  //scss-lint:disable ImportantRule - Override the applied components padding
+  transition: padding 0.3s $ease-out-quad;
+
+  @include breakpoint(break-large) {
+    padding-right: $gutter !important;
+    padding-left: $gutter !important;
+  }
+
+  @include breakpoint(s-down) {
+    padding-right: $gutter-half !important;
+    padding-left: $gutter-half !important;
+  }
+}
+
+%container-padding-small {
+  //scss-lint:disable ImportantRule - Override the applied components padding
+  transition: padding 0.3s $ease-out-quad;
+
+  @include breakpoint(l-down) {
+    padding-right: $gutter-third !important;
+    padding-left: $gutter-third !important;
+  }
+
+  @include breakpoint(s-down) {
+    padding-right: $gutter-half !important;
+    padding-left: $gutter-half !important;
+  }
+}

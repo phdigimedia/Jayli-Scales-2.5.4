@@ -1,0 +1,336 @@
+// Items
+.product-item {
+  @include col(1, 3, $gap: ($gutter-third / 2));
+  position: relative;
+  margin-bottom: $gutter-third;
+  overflow: hidden;
+
+  @include breakpoint(m-down) {
+    @include col(1, 2, $gap: ($gutter-third / 2));
+  }
+
+  &:hover .out-of-stock {
+    @include breakpoint(l) { background-color: rgba($heading-color, 0.2); }
+  }
+}
+
+// Images
+.product-item-container {
+  position: relative;
+  display: block;
+
+  .collection-item-borders & { border: 1px solid $collection-products-border; }
+
+  .product-grid-square & { @include maintain-ratio(1 1); }
+  .product-grid-tall & { @include maintain-ratio(4 5); }
+  .product-grid-taller & { @include maintain-ratio(2 3); }
+  .product-grid-wide & { @include maintain-ratio(3 2); }
+
+  .product-item-image {
+    @include lazy-loaded-img();
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Overlay
+.product-item-overlay {
+  @include coverer();
+  left: $gutter-third / 2;
+  z-index: 10;
+  display: block;
+  width: calc(100% - #{$gutter-third});
+  text-align: center;
+  background-color: transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) {
+    position: relative;
+    left: 0;
+    width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .product-item:hover & {
+    @media screen and (min-width: $large) {
+      //using a vanilla media query to allow mixin at breakpoint
+      @include opacity-background($collection-products-overlay-background, $property: collection-products-overlay);
+    }
+
+    @include breakpoint(l) {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .collection-overlay-image-preview & {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+
+    @include breakpoint(l) { padding-bottom: $gutter; }
+  }
+
+  .collection-overlay-image-preview .product-item:hover & { background-color: transparent; }
+
+  .products-navigation & {
+    .collection-overlay-image-preview & { padding-bottom: 0; }
+  }
+}
+
+.product-item-overlay-inner {
+  // Calc lets us 'fill' the parent set to display table
+  @include coverer();
+  display: table;
+  width: calc(100% + 1px);
+  height: calc(100% + 1px);
+  table-layout: fixed;
+
+  @include breakpoint(m-down) { position: relative; }
+
+  .collection-item-borders & { border: 1px solid $collection-products-border; }
+
+  .collection-overlay-image-preview.collection-item-borders & { border: 0; }
+
+  .collection-overlay-image-preview & { position: relative; }
+}
+
+// Image Hover Preview
+.product-item-image-preview {
+  @extend %revealer-fade;
+  @include coverer();
+
+  &.preview-active { background-color: $body-background; }
+
+  .image-preview-slice-image,
+  .image-preview-slice-container,
+  .image-preview-slice-trigger-container {
+    @include coverer();
+  }
+
+  .image-preview-slice-image {
+    @extend %revealer-fade;
+    background: {
+      color: $body-background;
+      position: center;
+      repeat: no-repeat;
+      size: cover;
+    }
+
+    &.animating { transition: all 0.2s $ease-out-quad; }
+  }
+
+  .image-preview-slice-trigger {
+    @include align(middle);
+    position: relative;
+    height: 100%;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background-color: rgba($body-background, 0.7);
+      content: "";
+      transition: all 0.3s $ease-out-quad;
+    }
+
+    &.active::after { background-color: rgba($heading-color, 0.4); }
+  }
+}
+
+// Details
+.product-item-details {
+  display: table-cell;
+  padding: $gutter-third;
+  color: $collection-products-overlay-color;
+  vertical-align: middle;
+
+  @include breakpoint(m-down) { color: $heading-color; }
+
+  .collection-overlay-image-preview & {
+    padding: ($gutter-half + $gutter-third) $gutter-third;
+    color: $heading-color;
+  }
+
+  .products-navigation & {
+    .collection-overlay-image-preview & { padding-bottom: 0; }
+  }
+}
+
+// Brand / Stock
+.product-item-brand,
+.product-out-of-stock {
+  @extend %metatext;
+  @extend %smallcaps;
+  display: block;
+  padding-bottom: $gutter-third;
+  font-family: $collection-products-brand-font-family;
+  font-weight: bold;
+  line-height: 1.4;
+  color: inherit;
+
+  @include breakpoint(ms-down) { font-size: $meta-font-size; }
+}
+
+.product-out-of-stock { font-size: $body-font-size; }
+
+// Title
+.product-item-name {
+  padding: 0 $gutter;
+  margin: 0 0 $gutter-third;
+  font-family: $collection-products-title-font-family;
+  font-size: $h5-size + 2px;
+  font-weight: normal;
+  text-transform: none;
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) { padding: 0; }
+  @include breakpoint(ms-down) { font-size: $h6-size; }
+
+  .out-of-stock & { text-decoration: line-through; }
+
+  a {
+    color: $collection-products-overlay-color;
+    white-space: normal;
+
+    @include breakpoint(m-down) { color: $heading-color; }
+
+    .collection-overlay-image-preview & { color: $heading-color; }
+  }
+}
+
+// Price
+.product-item-price {
+  color: inherit;
+
+  * {
+    @extend %h5;
+    font-weight: lighter;
+    color: $collection-products-overlay-color;
+
+    @include breakpoint(m-down) {
+      font-size: $body-font-size;
+      color: $heading-color;
+    }
+
+    .collection-overlay-image-preview & { color: $heading-color; }
+  }
+
+  .product-price {
+    margin: 0 3px;
+
+    &.saved {
+      color: $collection-products-overlay-color;
+
+      @include breakpoint(m-down) { color: $heading-color; }
+    }
+
+    .collection-overlay-image-preview & { color: $heading-color; }
+  }
+}
+
+// Links
+.product-item-link {
+  @include coverer();
+  z-index: 15;
+
+  @include breakpoint(m-down) { display: none; }
+
+  .collection-overlay-image-preview & { display: none; }
+}
+
+.product-item-image-link {
+  @include coverer();
+}
+
+// Quickshop
+.product-item-quick-shop {
+  @extend %secondary-font;
+  @extend %button-reset;
+  @extend %smallcaps;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  padding: $gutter-half;
+  font-size: $meta-font-size;
+  text-align: center;
+  background-color: rgba(lighten($collection-products-overlay-background, 10%), 0.25);
+  transition: all 0.3s $ease-out-quad;
+
+  @include breakpoint(m-down) { display: none; }
+
+  .collection-overlay-image-preview & { display: none; }
+
+  &:hover {
+    @include breakpoint(l) { background-color: rgba(lighten($collection-products-overlay-background, 10%), 0.75); }
+  }
+
+  .product-item-quick-shop-label {
+    @include align(middle);
+    line-height: 1;
+  }
+
+  svg {
+    @include align(middle);
+    position: relative;
+    top: -1px;
+    width: 8px;
+    height: 8px;
+    margin-left: 4px;
+    fill: currentColor;
+  }
+}
+
+// Badges
+.product-item-sale-badge {
+  @extend %metatext;
+  @extend %smallcaps;
+  position: absolute;
+  top: $gutter-third;
+  left: $gutter-third + ($gutter-third / 2);
+  z-index: 15;
+  padding: ($gutter-third / 2 + 1) ($gutter-third / 2 + 3);
+  margin: 0;
+  font-size: $body-font-size;
+  color: $collection-products-sale-badge-color;
+  background-color: $collection-products-sale-badge-background;
+
+  @include breakpoint(m-down) {
+    font-size: $meta-font-size - 1px;
+  }
+
+  @include breakpoint(s-down) {
+    padding: ($gutter-third / 2) ($gutter-third / 2 + 1);
+  }
+}
+
+// Removal
+.product-item-remove {
+  position: absolute;
+  top: $gutter-third;
+  right: $gutter-third + ($gutter-third / 2);
+  z-index: 10;
+
+  button {
+    @extend %button-reset;
+    display: block;
+  }
+
+  svg {
+    display: block;
+    width: 15px;
+    height: 15px;
+    transition: fill 0.3s $ease-out-quad;
+    fill: $heading-color;
+
+    .product-item:hover & { fill: $collection-products-overlay-color; }
+  }
+}

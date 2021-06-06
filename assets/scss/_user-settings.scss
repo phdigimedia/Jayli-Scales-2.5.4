@@ -1,0 +1,109 @@
+// Accents
+$light-color: #fff;
+$dark-color: #000;
+$accent-color: stencilColor("accent-color");
+$border-color: stencilColor("border-color");
+
+// Body
+$body-font: stencilString("body-font");
+$body-font-size: stencilNumber("body-font-size");
+$body-font-family: get-font-family($body-font);
+$body-font-weight: get-font-weight($body-font, "normal");
+$body-background: stencilColor("body-background");
+$body-color: stencilColor("body-color");
+
+// Meta
+$meta-font: stencilString("meta-font");
+$meta-font-size: stencilNumber("meta-font-size");
+$meta-font-family: get-font-family($meta-font);
+$meta-font-weight: get-font-weight($meta-font, "normal");
+$meta-color: stencilColor("meta-color");
+
+// Inputs
+$input-color: stencilColor("input-color");
+$input-background: stencilColor("input-background");
+$input-border: stencilColor("input-border");
+
+// Header
+$header-font: stencilString("header-font");
+$header-font-size: stencilNumber("header-font-size");
+$header-font-family: get-font-family($header-font);
+$header-font-weight: get-font-weight($header-font, "normal");
+$header-background: stencilColor("header-background");
+$header-border: stencilColor("header-border");
+$header-color: stencilColor("header-color");
+$header-accent: mix($header-color, $header-background, 15%);
+
+// Footer
+$footer-font: stencilString("footer-font");
+$footer-font-size: stencilNumber("footer-font-size");
+$footer-font-family: get-font-family($footer-font);
+$footer-font-weight: get-font-weight($footer-font, "normal");
+$footer-background: stencilColor("footer-background");
+$footer-color: stencilColor("footer-color");
+$footer-accent: mix($footer-color, $footer-background, 45%);
+
+// Headings
+$heading-font: stencilString("heading-font");
+$heading-font-family: get-font-family($heading-font);
+$heading-color: stencilColor("heading-color");
+
+// Buttons
+$button-font: stencilString("button-font");
+$button-font-size: stencilNumber("button-font-size");
+$button-font-size-small: $body-font-size;
+$button-font-family: get-font-family($button-font);
+$button-font-weight: get-font-weight($button-font, "bold");
+$button-primary-background: stencilColor("button-primary-background");
+$button-primary-color: stencilColor("button-primary-color");
+$button-primary-accent: hover-accent($button-primary-background, 10%);
+$button-secondary-background: stencilColor("button-secondary-background");
+$button-secondary-color: stencilColor("button-secondary-color");
+$button-secondary-accent: mix($body-background, $button-secondary-color, 30%);
+
+// Carousel
+$carousel-overlay-color: stencilColor("carousel-overlay-color");
+$carousel-text-color: stencilColor("carousel-text-color");
+$carousel-heading-font: stencilString("carousel-heading-font");
+$carousel-heading-font-size: stencilNumber("carousel-heading-font-size");
+$carousel-heading-font-family: get-font-family($carousel-heading-font);
+$carousel-heading-font-weight: get-font-weight($carousel-heading-font, "bold");
+$carousel-caption-font: stencilString("carousel-caption-font");
+$carousel-caption-font-size: stencilNumber("carousel-caption-font-size");
+$carousel-caption-font-family: get-font-family($carousel-caption-font);
+$carousel-caption-font-weight: get-font-weight($carousel-caption-font, "normal");
+
+// Products
+$single-product-title-font: stencilString("single-product-title-font");
+$single-product-brand-font: stencilString("single-product-brand-font");
+$single-product-title-font-family: get-font-family($single-product-title-font);
+$single-product-brand-font-family: get-font-family($single-product-brand-font);
+
+$collection-products-title-font: stencilString("collection-products-title-font");
+$collection-products-brand-font: stencilString("collection-products-brand-font");
+$collection-products-title-font-family: get-font-family($collection-products-title-font);
+$collection-products-brand-font-family: get-font-family($collection-products-brand-font);
+$collection-products-overlay-background: stencilColor("collection-products-overlay-background");
+$collection-products-overlay-color: stencilColor("collection-products-overlay-color");
+$collection-products-border: stencilColor("collection-products-border");
+$collection-products-sale-badge-background: stencilColor("collection-products-sale-badge-background");
+$collection-products-sale-badge-color: stencilColor("collection-products-sale-badge-color");
+
+// Banners
+$banner-font: stencilString("banner-font");
+$banner-font-size: stencilNumber("banner-font-size");
+$banner-font-family: get-font-family($banner-font);
+$banner-font-weight: get-font-weight($banner-font, "light");
+$banner-background: stencilColor("banner-background");
+$banner-color: stencilColor("banner-color");
+
+// User defined content
+$user-defined-content-link-color: stencilColor("accent-color");
+
+// Tables
+$table-color: stencilColor("table-color");
+$table-color-accent: lighten($table-color, 5%);
+
+// Alerts
+$error-color: stencilColor("error-color");
+$success-color: stencilColor("success-color");

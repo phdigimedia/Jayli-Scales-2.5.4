@@ -1,0 +1,80 @@
+//scss-lint:disable NameFormat, StringQuotes
+// List of font weights: normal / medium / bold
+// If font is missing a third weight, use the first weight twice so three values are present
+$font-weights-alegreya-sans: (300, 400, 700);
+$font-weights-archivo-narrow: (400, 400, 700);
+$font-weights-david-libre: (400, 500, 700);
+$font-weights-proza-libre: (400, 500, 700);
+$font-weights-josefin-sans: (300, 400, 700);
+$font-weights-karla: (400, 400, 700);
+$font-weights-work-sans: (300, 400, 700);
+$font-weights-cardo: (400, 400, 700);
+
+$fonts: (
+  AlegreyaSans: $font-weights-alegreya-sans,
+  ArchivoNarrow: $font-weights-archivo-narrow,
+  DavidLibre: $font-weights-david-libre,
+  ProzaLibre: $font-weights-proza-libre,
+  JosefinSans:$font-weights-josefin-sans,
+  Karla: $font-weights-karla,
+  WorkSans: $font-weights-work-sans,
+  Cardo: $font-weights-cardo
+);
+
+// Helper to normalise font names
+@function font-cleanup($string, $search: " ", $replace: "") {
+  $index: str-index($string, $search);
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+            font-cleanup(str-slice($string, $index +
+            str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+// Get the font family for a stencil setting
+@function get-font-family($font-type: "primary-font") {
+  @if (type_of($font-type) == 'null') {
+    @warn "You've passed a null value for $font-type, please check your settings";
+    $font-type: "primary-font";
+  }
+  $font-family: stencilFontFamily($font-type);
+  @return $font-family;
+}
+
+// Get the appropriate font weight for a listed font
+@function get-font-weight($font-type: "primary-font", $weight: "normal") {
+  @if (type_of($weight) == 'null') {
+    @warn "You've passed a null value for $weight, please check your settings";
+    $weight: "normal";
+  }
+
+  $nth-to-get: 1;
+  @if ($weight == "light") { $nth-to-get: 1; }
+  @if ($weight == "normal") { $nth-to-get: 2; }
+  @if ($weight == "bold") { $nth-to-get: 3; }
+
+  $font-setting: get-font-family($font-type);
+  $font-family: #{font-cleanup($font-setting)};
+  $font-weights: map-get($fonts, #{$font-family});
+  @if (length($font-weights) < $nth-to-get) {
+    @warn "#{$font-family} does not have the weight #{$weight}";
+  } @else {
+    $font-weight: nth($font-weights, $nth-to-get);
+    @return $font-weight
+  }
+
+  // Return a default value of 400 / normal if no indexed font weight
+  @return 400;
+}
+
+// Get the font attributes for a stencil setting
+@mixin get-font($setting: "body-font", $weight: false) {
+  $font-type: stencilString($setting);
+  font-family: get-font-family($font-type);
+
+  @if ($weight) {
+    font-weight: get-font-weight($font-type, $weight);
+  }
+}

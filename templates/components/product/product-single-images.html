@@ -1,0 +1,29 @@
+{{#each product.images}}
+  <figure
+    class="product-single-image"
+    data-product-image
+    data-find-image-id="{{@index}}"
+  >
+    <div class="product-gallery-image-container">
+      {{> components/common/responsive-image
+          image=this
+          class="product-item-image"
+          fit="cover"
+          fallback_size=../theme_settings.large
+          lazyload=../theme_settings.lazyload_mode
+          default_image=../theme_settings.default_image
+        }}
+    </div>
+  </figure>
+{{/each}}
+
+{{#each product.videos.list}}
+  <figure class="product-single-image" data-product-video>
+    <iframe
+      src="https://www.youtube.com/embed/{{id}}?rel=0&showinfo=0&autohide=1"
+      frameborder="0"
+      allowfullscreen
+    >
+    </iframe>
+  </figure>
+{{/each}}
