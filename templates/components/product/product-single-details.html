@@ -74,6 +74,10 @@
       itemscope
       itemtype="http://schema.org/AggregateRating"
     >
+      <div class="yotpo bottomLine"
+          data-yotpo-product-id="{{ product.id }}">
+    </div>
+      <h5>This is a test</h5>
       {{#if settings.show_product_rating}}
         <meta itemprop="ratingValue" content="{{product.rating}}">
         <meta itemprop="ratingCount" content="{{product.num_reviews}}">
