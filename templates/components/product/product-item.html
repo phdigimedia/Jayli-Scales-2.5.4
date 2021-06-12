@@ -66,13 +66,12 @@
           }}
         </div>
       {{/if}}
-
         <h5 class="product-item-name">
           <a href="{{url}}" title="{{name}}">
             {{name}}
           </a>
         </h5>
-
+        {{> components/yotpo/bottom-line url=url id=id}}
         <span class="product-item-price">
           {{> core/products/price
             context="product-item"
