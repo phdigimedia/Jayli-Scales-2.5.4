@@ -29,6 +29,8 @@
   {{{head.rsslinks}}}
   {{> components/common/global-injects}}
   {{> components/snippets/facebook-like-script}}
+  {{> components/gtm/head }}
+  {{> components/yotpo/head }}
 </head>
 
 <body
@@ -45,6 +47,7 @@
   {{!#if carousel}}
     {{!> components/carousel}}
   {{!/if}}
+  {{> components/gtm/body }}
 
   <main class="main-content" data-main-content>
     <div class="site-alerts" data-alerts>
