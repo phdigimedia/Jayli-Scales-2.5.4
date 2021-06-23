@@ -143,6 +143,7 @@
     "footer_payment_discover": false,
     "footer_payment_paypal": true,
     "footer_payment_apple_pay": true,
+    "restrict_to_login": false,
     "table-color": "#f5f0dA",
     "error-color": "#ff584d",
     "success-color": "#42cf82",
@@ -152,7 +153,7 @@
     "pages-show-breadcrumbs": true,
     "style_apple_pay_button": "white-border",
     "gtm-container-id": "GTM-TPBH4PF",
-    "yotpo-widget-url": "//staticw2.yotpo.com/vAPz9TOLM7DTe23feiJGvRwDMoap0ePJbIsV8Gpx/widget.js",
+    "yotpo-widget-url": "",
     "_images": {
       "logo": {
         "width": 300,
