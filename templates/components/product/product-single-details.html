@@ -46,7 +46,9 @@
       }}
     {{/if}}
   </div>
-<div class="yotpo-bottoom-line">{{> components/yotpo/bottom-line url=product.url id=product.id}}</div>
+<div class="yotpo-bottoom-line">{{> components/yotpo/bottom-line url=product.url id=product.id}}
+  {{> components/product/additional-info}}
+</div>
   {{{region name="product_below_price"}}}
 
   <form
