@@ -240,8 +240,10 @@
 }
 
 // Details
+// Added text align for sku
 .product-additional-info-container {
   @include row();
+  text-align: center;
 }
 
 .product-additional-info-key,
@@ -261,3 +263,4 @@
   margin-right: auto;
   width: 70%;
 }
+
